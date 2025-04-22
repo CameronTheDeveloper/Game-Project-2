@@ -21,3 +21,34 @@ visual media, and therefore, your demo must show effort in its construction. For
 displaying a blank background will be penalized as it is very easy to use a simple background
 image instead.
 >>>>>>> ab7255582b2d5faf9fb2afb74728d4bd4704c862
+
+## Game Logic
+
+- Background and objects move left
+- Car can move up, down, left, right
+
+## Car/Player
+
+- Moves up, down, right, left
+- cordinates (x and y)
+
+- _Method_ Update
+- _Method_ draw
+- _Method_
+
+## Obstacles
+
+- cordinates (x and y)
+
+- _Method_ Update
+- _Method_ draw
+
+## main
+
+- Update
+
+* Calls background update
+* Calls car update
+* Calls drawStartState
+* Calls drawPlayState
+*

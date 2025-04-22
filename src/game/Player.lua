@@ -16,7 +16,7 @@ function Car:init(spriteIndex){
 }
 
 function Car:update(dt){
-
+    
 }
 
 function Car:draw(){

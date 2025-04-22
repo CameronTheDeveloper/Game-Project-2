@@ -26,6 +26,7 @@ image instead.
 
 - Background and objects move left
 - Car can move up, down, left, right
+- Score system - Score goes up by time
 
 ## Car/Player
 

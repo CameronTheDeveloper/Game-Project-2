@@ -13,10 +13,16 @@ function Car:init(spriteIndex){
     self.y = 0
     self.timeElapsed = 0
     self.spriteIndex = spriteIndex or 1 -- Default value
+    self.score = 0
+    self.scoreRate = 1
+    self.timeElapsed = 0
 }
 
 function Car:update(dt){
-    
+    self.timeElapsed = self.timeElapsed + dt
+
+    -- Add score every second (or fraction thereof)
+    self.score = self.score + self.scoreRate * dt
 }
 
 function Car:draw(){

@@ -4,7 +4,7 @@ local Class = require "libs.hump.class"
 local obstacleSprite = love.graphics.newImage("/graphics/obj/towtruck.png")
 
 
-local Obstacle = class{}
+local Obstacle = Class{}
 
 function Obstacle:init(speed)
     self.x = 0

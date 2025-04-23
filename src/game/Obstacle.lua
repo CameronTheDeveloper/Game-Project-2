@@ -6,18 +6,19 @@ local obstacleSprite = love.graphics.newImage("../graphics/obj/towtruck.png")
 
 local Obstacle = class{}
 
-function Obstacle:init(spriteIndex)
+function Obstacle:init(speed)
     self.x = 0
     self.y = 0
-    self.timeElapsed = 0
+    self.image = obstacleSprite
+    self.speed = speed or 100
 end
 
 function Obstacle:update(dt)
-    
+    self.x = self.x - self.speed * dt
 end
 
 function Obstacle:draw()
-    love.graphics.draw(obstacleSprite, self.x, self.y)
+    love.graphics.draw(self.image, self.x, self.y)
 end
 
 return Obstacle

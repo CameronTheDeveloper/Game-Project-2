@@ -5,7 +5,7 @@ local Push = require "libs.push"
 local Sounds = require "src.game.Sounds"
 local Background = require "src.game.Background"
 local Player = require "src.game.Player"
-local HUD = require "src.game.HUD."
+-- local HUD = require "src.game.HUD."
 
 function love.load()
     love.window.setTitle("Drive,Dodge,Dash!!!")
@@ -13,7 +13,7 @@ function love.load()
     math.randomseed(os.time())
 
     player = Player(0,0)
-    hud = HUD(player)
+    -- hud = HUD(player)
 
     stagemanager:setPlayer(player)
 
@@ -71,7 +71,7 @@ function drawPlayState()
 
     stagemanager:currentStage():draw()
 
-    hud:draw()
+    -- hud:draw()
 
     bg:drawBackground()
     bg:drawForeground()

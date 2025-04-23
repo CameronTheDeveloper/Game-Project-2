@@ -14,6 +14,17 @@ function Stage:init(rows, cols, ts)
     self.obstacles = {} 
     self.bgs = {} 
     self.map = Matrix:new(self.rowCount, self.colCount) 
+
+    for row = 1, self.rowCount do
+        for col = 1, self.colCount do
+            self.map[row][col] = {
+                quad = nil,  -- set to a proper quad if you have one
+                rotation = 0,
+                flipHor = 1,
+                flipVer = 1,
+            }
+        end
+    end
 end
 
 function Stage:update(dt)
@@ -47,17 +58,19 @@ function Stage:draw()
 end
 
 
-function Stage:drawTile(row,col)
+function Stage:drawTile(row, col)
     local curTile = self.map[row][col]
-    if curTile then -- if not nil
-        love.graphics.draw(self.tileset:getImage(), --img
-            curTile.quad,  -- quad
-            (col-1)*self:getTileSize(),
-            (row-1)*self:getTileSize(), 
-            curTile.rotation, 
-            curTile.flipHor, 
-            curTile.flipVer)
+    if curTile and curTile.quad then
+        love.graphics.draw(self.tileset:getImage(),
+            curTile.quad,
+            (col - 1) * self:getTileSize(),
+            (row - 1) * self:getTileSize(),
+            curTile.rotation or 0,
+            curTile.flipHor or 1,
+            curTile.flipVer or 1
+        )
     end
 end
+
 
 return Stage

@@ -145,7 +145,7 @@ end
 
 function drawPlayState()
 
-    stagemanager:currentStage():draw()
+    -- stagemanager:currentStage():draw()
 
     -- hud:draw()
 

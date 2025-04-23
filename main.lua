@@ -33,8 +33,10 @@ end
 
 function love.update(dt)
     handleInput(dt)
-    player:update(dt)
-    stage:update(dt)
+    if gameState == "play" then
+        player:update(dt)
+        stage:update(dt)
+    end
 end
 
 function handleInput(dt)
@@ -44,6 +46,10 @@ function handleInput(dt)
     local stageHeight = stage:getHeight()
     local carWidth = player.image:getWidth()
     local carHeight = player.image:getHeight()
+
+    if love.keyboard.isDown("return") and gameState == "start" then
+        gameState = "play"
+    end
 
     if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
         player.x = math.max(0, player.x - speed * dt)

@@ -42,6 +42,7 @@ end
 function Background:drawGameground()
     love.graphics.draw(bgHighway,-self.bgGroundPos,0)
     love.graphics.draw(bgHighway,self.bgWidth-self.bgGroundPos,0)
+end
 
 function Background:drawForeground()
     love.graphics.draw(bgLight,-self.bgLightPos,0)

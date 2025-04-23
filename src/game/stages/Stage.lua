@@ -9,6 +9,9 @@ function Stage:init(rows, cols, ts)
     self.rowCount = rows
     self.colCount = cols
 
+    self.spawnTimer = 0
+    self.spawnInterval = 2 -- Seconds
+
     self.initialPlayerY = 0
     self.initialPlayerX = 0
     self.music = nil
@@ -29,8 +32,28 @@ function Stage:init(rows, cols, ts)
 end
 
 function Stage:update(dt)
-    for i=1, #self.obstacles do 
+    for i = 1, #self.obstacles do 
         self.obstacles[i]:update(dt)
+    end
+
+    -- Increment the spawn timer
+    self.spawnTimer = self.spawnTimer + dt
+
+    -- Check if it's time to spawn a new obstacle
+    if self.spawnTimer >= self.spawnInterval then
+        self.spawnTimer = 0
+
+        local x = self:getWidth()
+        local y = math.random(0, self:getHeight() - 64)
+        local speed = 100
+        self:spawnObstacle(x, y, speed)
+    end
+
+    -- Remove obstacles that moved offscreen
+    for i = #self.obstacles, 1, -1 do
+        if self.obstacles[i].x + self.obstacles[i].image:getWidth() < 0 then
+            table.remove(self.obstacles, i)
+        end
     end
 end
 

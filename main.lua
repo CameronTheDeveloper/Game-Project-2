@@ -9,6 +9,7 @@ local bg = Background()
 local player
 local stage
 local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",26)
+
 -- local HUD = require "src.game.HUD."
 
 function love.load()
@@ -19,10 +20,12 @@ function love.load()
     })
 
     player = Car(1) -- 1 = green car
+    local tileImage = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
+
     stage = Stage(10, 15, {
         tileSize = 64,
         getImage = function()
-            return love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
+            return tileImage
         end
     })
     

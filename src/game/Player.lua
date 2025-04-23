@@ -16,6 +16,7 @@ function Player:init(spriteIndex)
     self.score = 0
     self.scoreRate = 1
     self.timeElapsed = 0
+    self.speed = 100
 end
 
 function Player:update(dt)

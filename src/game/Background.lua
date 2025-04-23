@@ -28,24 +28,6 @@ function Background:update(dt)
 end
 
 function Background:drawBackground()
-    love.graphics.draw(bgGround1,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround1,self.bgWidth-self.bgGroundPos,0)
-
-    love.graphics.draw(bgGround2,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround2,self.bgWidth-self.bgGroundPos,0)
-
-    love.graphics.draw(bgGround3,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround3,self.bgWidth-self.bgGroundPos,0)
-
-    love.graphics.draw(bgGround4,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround4,self.bgWidth-self.bgGroundPos,0)
-
-    love.graphics.draw(bgGround5,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround5,self.bgWidth-self.bgGroundPos,0)
-
-    love.graphics.draw(bgGround6,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround6,self.bgWidth-self.bgGroundPos,0)
-
     love.graphics.draw(bgGround7,-self.bgGroundPos,0)
     love.graphics.draw(bgGround7,self.bgWidth-self.bgGroundPos,0)
 end

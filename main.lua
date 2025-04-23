@@ -1,6 +1,5 @@
-local Car = require "Player"
-local Stage = require "Stage"
-
+local Car = require "src.game.Player"
+local Stage = require "src.game.stages.Stage"
 local player
 local stage
 
@@ -9,7 +8,7 @@ function love.load()
     stage = Stage(10, 15, {
         tileSize = 64,
         getImage = function()
-            return love.graphics.newImage("graphics/tiles/road_tile.png")
+            return love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
         end
     })
 

@@ -19,6 +19,11 @@ function Player:init(spriteIndex)
     self.speed = 100
 end
 
+function Player:nextStage(stage)
+    self.x = stage.initialPlayerX
+    self.y = stage.initialPlayerY
+end
+
 function Player:update(dt)
     self.timeElapsed = self.timeElapsed + dt
 

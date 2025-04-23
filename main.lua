@@ -21,22 +21,28 @@ function love.update(dt)
     player:update(dt)
     stage:update(dt)
 end
-
 function handleInput(dt)
     local speed = player.speed
+    local tileSize = stage:getTileSize()
+    local stageWidth = stage:getWidth()
+    local stageHeight = stage:getHeight()
+    local carWidth = player.image:getWidth()
+    local carHeight = player.image:getHeight()
+
     if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
-        player.x = player.x - speed * dt
+        player.x = math.max(0, player.x - speed * dt)
     end
     if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
-        player.x = player.x + speed * dt
+        player.x = math.min(stageWidth - carWidth, player.x + speed * dt)
     end
     if love.keyboard.isDown("up") or love.keyboard.isDown("w") then
-        player.y = player.y - speed * dt
+        player.y = math.max(0, player.y - speed * dt)
     end
     if love.keyboard.isDown("down") or love.keyboard.isDown("s") then
-        player.y = player.y + speed * dt
+        player.y = math.min(stageHeight - carHeight, player.y + speed * dt)
     end
 end
+
 
 function love.draw()
     stage:draw()

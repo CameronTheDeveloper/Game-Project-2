@@ -12,7 +12,7 @@ function Player:init(spriteIndex)
     self.x = 0
     self.y = 0
     self.timeElapsed = 0
-    self.spriteIndex = spriteIndex or 1 -- Default value
+    self.image = carSprites[spriteIndex or 1] -- Default value
     self.score = 0
     self.scoreRate = 1
     self.timeElapsed = 0
@@ -27,7 +27,7 @@ function Player:update(dt)
 end
 
 function Player:draw()
-    love.graphics.draw(carSprites[self.spriteIndex], self.x, self.y)
+    love.graphics.draw(self.image, self.x, self.y)
 end
 
 return Player

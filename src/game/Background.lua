@@ -1,12 +1,9 @@
 local Class = require "hump.class"
 
 local bgGround1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/1.png")
-local bgGround2 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/2.png")
-local bgGround3 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/3.png")
-local bgGround4 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/4.png")
-local bgGround5 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/5.png")
 local bgGround6 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/6.png")
 local bgGround7 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
+local bgHighway = love.graphics.newImage("graphics/tilesets/tile/Highway_road (96 x 64).png")
 local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
 local bgLight = love.graphics.newImage("graphics/obj/light_double.png")
 
@@ -31,6 +28,20 @@ function Background:drawBackground()
     love.graphics.draw(bgGround7,-self.bgGroundPos,0)
     love.graphics.draw(bgGround7,self.bgWidth-self.bgGroundPos,0)
 end
+
+function Background:drawMenuground()
+    love.graphics.draw(bgGround6,-self.bgGroundPos,0)
+    love.graphics.draw(bgGround6,self.bgWidth-self.bgGroundPos,0)
+end
+
+function Background:drawCarground()
+    love.graphics.draw(bgGround1,-self.bgGroundPos,0)
+    love.graphics.draw(bgGround1,self.bgWidth-self.bgGroundPos,0)
+end
+
+function Background:drawGameground()
+    love.graphics.draw(bgHighway,-self.bgGroundPos,0)
+    love.graphics.draw(bgHighway,self.bgWidth-self.bgGroundPos,0)
 
 function Background:drawForeground()
     love.graphics.draw(bgLight,-self.bgLightPos,0)

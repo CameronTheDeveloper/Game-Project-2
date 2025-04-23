@@ -17,7 +17,7 @@ function Background:init()
 end
 
 function Background:update(dt)
-    self.bgLightPos = (self.bgCloudPos+self.bgSpeed*2*dt)%self.bgWidth
+    self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
     self.bgGroundPos = (self.bgGroundPos+self.bgSpeed*dt)%self.bgWidth
     self.bgBarrierPos = (self.bgBarrierPos+self.bgSpeed*2*dt)%self.bgWidth
     self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth

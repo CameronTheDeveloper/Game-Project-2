@@ -3,8 +3,9 @@ local Push = require "libs.push"
 local Car = require "src.game.Player"
 local Stage = require "src.game.stages.Stage"
 local Sounds = require "src.game.Sounds"
--- local Background = require "src.game.Background"
+local Background = require "src.game.Background"
 
+local bg = Background()
 local player
 local stage
 local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",26)

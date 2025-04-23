@@ -1,13 +1,23 @@
 local Stage = require "src.game.stages.Stage"
---local BasicTileset = require "src.game.tiling.BasicTileset"
-local Background = require "src.game.tiling.Background"
+local BasicTileset = require "src.game.tiling.BasicTileset"
+local Background = require "src.game.Background"
 local towtruck = require "src.game.obstacle.towtruck"
+local props = require "src.game.obstacle.props"
 local Sounds = require "src.game.Sounds"
 
 local function createSdaylight()
     local stage = Stage(20,50,BasicTileset)
-    local mapdata = require "src.game.maps.map1"
-    stage:readMapData(mapdata)
+    for row = 1, 20 do -- 15*16 = 240pixels
+        for col = 1, 50 do -- 30*16 = 480 pixels
+            if row < 13 then
+                stage.map[row][col] = nil
+            elseif row == 13 then
+                stage.map[row][col] = stage.tileset:get(2)
+            else
+                stage.map[row][col] = stage.tileset:get(10)
+            end
+        end -- end for col
+    end -- end for row
 
     -- Backgrounds
     local bg1 = Background("graphics/tilesets/Backgrounds/Back1/7.png")

@@ -153,9 +153,9 @@ function drawStartState()
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Drive,\nDodge,\nDash!!!", titleFont,0,20,gameWidth,"center")
     love.graphics.setColor(1,1,1)
-    love.graphics.printf("Start", 0,100,gameWidth,"center")
-    love.graphics.printf("Cars", 0,120,gameWidth,"center")
-    love.graphics.printf("Exit", 0,140,gameWidth,"center")
+    love.graphics.printf("Start", 0,120,gameWidth,"center")
+    love.graphics.printf("Cars", 0,140,gameWidth,"center")
+    love.graphics.printf("Exit", 0,160,gameWidth,"center")
 
 end
 

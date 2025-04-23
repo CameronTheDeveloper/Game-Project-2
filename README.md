@@ -44,12 +44,35 @@ image instead.
 - _Method_ Update
 - _Method_ draw
 
-## main
+### main
 
-- Update
+### Update
 
 * Calls background update
 * Calls car update
 * Calls drawStartState
 * Calls drawPlayState
 *
+
+
+## Game Menu 
+
+- Add effects when clicking on menu
+
+
+## HUD 
+
+### Properties 
+- player
+- score
+- time
+- Pause button
+
+### Methods
+## Update 
+## drawTimer
+## updateTimer
+## drawScore
+## updateScore
+
+## HUD:draw

@@ -1,5 +1,6 @@
 local Class = require "libs.hump.class"
 local Matrix = require "libs.matrix"
+local Obstacle = require "src.game.Obstacle"
 
 local Stage = Class{}
 
@@ -31,6 +32,13 @@ function Stage:update(dt)
     for i=1, #self.obstacles do 
         self.obstacles[i]:update(dt)
     end
+end
+
+function Stage:spawnObstacle(x, y, speed)
+    local obs = Obstacle(speed)
+    obs.x = x
+    obs.y = y
+    table.insert(self.obstacles, obs)
 end
 
 function Stage:getWidth()

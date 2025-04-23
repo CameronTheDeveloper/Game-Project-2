@@ -1,7 +1,7 @@
-local Class = require "hump.class"
+local Class = require "libs.hump.class"
 
 -- Check paths
-local obstacleSprite = love.graphics.newImage("../graphics/obj/towtruck.png")
+local obstacleSprite = love.graphics.newImage("/graphics/obj/towtruck.png")
 
 
 local Obstacle = class{}

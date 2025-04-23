@@ -60,3 +60,4 @@ function Stage:drawTile(row,col)
     end
 end
 
+return Stage

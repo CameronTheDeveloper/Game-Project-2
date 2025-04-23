@@ -6,9 +6,9 @@ carSprites[1] = love.graphics.newImage("../graphics/cars/sports_green.png")
 carSprites[2] = love.graphics.newImage("../graphics/cars/sports_red.png")
 carSprites[3] = love.graphics.newImage("../graphics/cars/sports_yellow.png")
 
-local Car = class{}
+local Player = class{}
 
-function Car:init(spriteIndex)
+function Player:init(spriteIndex)
     self.x = 0
     self.y = 0
     self.timeElapsed = 0
@@ -18,15 +18,15 @@ function Car:init(spriteIndex)
     self.timeElapsed = 0
 end
 
-function Car:update(dt)
+function Player:update(dt)
     self.timeElapsed = self.timeElapsed + dt
 
     -- Add score every second (or fraction thereof)
     self.score = self.score + self.scoreRate * dt
 end
 
-function Car:draw()
+function Player:draw()
     love.graphics.draw(carSprites[self.spriteIndex], self.x, self.y)
 end
 
-return Car
+return Player

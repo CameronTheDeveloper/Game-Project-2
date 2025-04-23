@@ -1,12 +1,12 @@
-local Class = require "hump.class"
+local Class = require "libs.hump.class"
 local carSprites = {}
 
 -- Check paths
-carSprites[1] = love.graphics.newImage("../graphics/cars/sports_green.png")
-carSprites[2] = love.graphics.newImage("../graphics/cars/sports_red.png")
-carSprites[3] = love.graphics.newImage("../graphics/cars/sports_yellow.png")
+carSprites[1] = love.graphics.newImage("/graphics/cars/sports_green.png")
+carSprites[2] = love.graphics.newImage("/graphics/cars/sports_red.png")
+carSprites[3] = love.graphics.newImage("/graphics/cars/sports_yellow.png")
 
-local Player = class{}
+local Player = Class{}
 
 function Player:init(spriteIndex)
     self.x = 0

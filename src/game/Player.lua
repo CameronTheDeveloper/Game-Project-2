@@ -30,4 +30,25 @@ function Player:draw()
     love.graphics.draw(self.image, self.x, self.y)
 end
 
+function Player:checkCollision(obstacle)
+    local playerLeft = self.x
+    local playerRight = self.x + self.image:getWidth()
+    local playerTop = self.y
+    local playerBottom = self.y + self.image:getHeight()
+
+    local obstacleLeft = obstacle.x
+    local obstacleRight = obstacle.x + obstacle.image:getWidth()
+    local obstacleTop = obstacle.y
+    local obstacleBottom = obstacle.y + obstacle.image:getHeight()
+
+    -- Check if the boxes overlap
+    if playerRight > obstacleLeft and playerLeft < obstacleRight and
+       playerBottom > obstacleTop and playerTop < obstacleBottom then
+        return true
+    else
+        return false
+    end
+end
+
+
 return Player

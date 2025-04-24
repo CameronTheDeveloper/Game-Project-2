@@ -1,10 +1,9 @@
 local Class = require "libs.hump.class"
 local Matrix = require "libs.matrix"
 local Obstacle = require "src.game.Obstacle"
-
 local Stage = Class{}
 
-function Stage:init(rows, cols, ts)
+function Stage:init(rows, cols, player, ts)
     self.tileset = ts
     self.rowCount = rows
     self.colCount = cols
@@ -12,6 +11,7 @@ function Stage:init(rows, cols, ts)
     self.spawnTimer = 0
     self.spawnInterval = 2 -- Seconds
 
+    self.player = player
     self.initialPlayerY = 0
     self.initialPlayerX = 0
     self.music = nil
@@ -47,6 +47,15 @@ function Stage:update(dt)
         local y = math.random(0, self:getHeight() - 64)
         local speed = math.random(50, 100)
         self:spawnObstacle(x, y, speed)
+    end
+
+    for i = 1, #self.obstacles do
+        self.obstacles[i]:update(dt)
+
+        -- Check for collision
+        if self.player:checkCollision(self.obstacles[i]) then
+            gameState = "over"            
+        end
     end
 
     -- Remove obstacles that moved offscreen

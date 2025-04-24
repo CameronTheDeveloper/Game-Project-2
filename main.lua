@@ -150,13 +150,13 @@ function drawPlayState()
     -- hud:draw()
 
     bg:drawBackground()
-    bg:drawForeground()
+    --bg:drawForeground()
 
     player:draw()
 end
 
 function drawStartState()
-    if bg then bg:drawMenuground() end -- Need to pass background parameter
+    bg:drawMenuground()
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Drive,\nDodge,\nDash!!!", titleFont,0,20,gameWidth,"center")
     love.graphics.setColor(1,1,1)

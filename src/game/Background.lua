@@ -14,8 +14,19 @@ end
 function Background:draw()
     love.graphics.draw(self.img,self.x,self.y,0,self.scaleX,self.scaleY)
 end
-    
-return Background
+
+local bgGround6 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/6.png")
+local bgGround3 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/3.png")
+
+function Background:drawMenuground() 
+    love.graphics.draw(bgGround6,-self.scaleX,0)
+    love.graphics.draw(bgGround6,-self.scaleY,0)
+end
+
+function Background:drawBackground()
+    love.graphics.draw(bgGround6,-self.scaleX,0)
+    love.graphics.draw(bgGround6,-self.scaleY,0)
+end
 
 --local bgGround1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/1.png")
 --local bgGround6 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/6.png")
@@ -46,11 +57,6 @@ return Background
 --    love.graphics.draw(bgGround7,self.bgWidth-self.bgGroundPos,0)
 --end
 
---function Background:drawMenuground()
---    love.graphics.draw(bgGround6,-self.bgGroundPos,0)
---    love.graphics.draw(bgGround6,self.bgWidth-self.bgGroundPos,0)
---end
-
 --function Background:drawCarground()
 --    love.graphics.draw(bgGround1,-self.bgGroundPos,0)
 --    love.graphics.draw(bgGround1,self.bgWidth-self.bgGroundPos,0)
@@ -70,4 +76,4 @@ return Background
 --end
 
 
---return Background
+return Background

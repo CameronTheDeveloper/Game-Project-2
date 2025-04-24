@@ -13,10 +13,8 @@ local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",26)
 
 function love.load()
     love.window.setTitle("Drive,Dodge,Dash!!!")
-    Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {
-        fullscreen = false, 
-        resizable = true
-    })
+    Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = false, resizable = true})
+
 
     player = Car(1) -- 1 = green car
     stage = Stage(10, 15, {
@@ -28,8 +26,12 @@ function love.load()
     
 
     -- Set the window size to match the stage
-    love.window.setMode(stage:getWidth(), stage:getHeight())
+    --love.window.setMode(stage:getWidth(), stage:getHeight())
 end
+
+function love.resize(w,h)
+    Push:resize(w,h)
+end    
 
 function love.update(dt)
     handleInput(dt)

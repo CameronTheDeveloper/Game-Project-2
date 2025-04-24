@@ -6,7 +6,7 @@ local obstacleSprite = love.graphics.newImage("/graphics/obj/towtruck.png")
 
 local Obstacle = Class{}
 
-function Obstacle:init(speed, x, y)
+function Obstacle:init(x, y, speed)
     self.x = x
     self.y = y
     self.image = obstacleSprite

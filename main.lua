@@ -13,6 +13,7 @@ local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",26)
 -- local HUD = require "src.game.HUD."
 
 function love.load()
+    math.randomseed(os.time())
     love.window.setTitle("Drive,Dodge,Dash!!!")
     Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {
         fullscreen = false, 

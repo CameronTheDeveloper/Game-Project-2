@@ -45,7 +45,7 @@ function Stage:update(dt)
 
         local x = self:getWidth()
         local y = math.random(0, self:getHeight() - 64)
-        local speed = 100
+        local speed = math.random(50, 100)
         self:spawnObstacle(x, y, speed)
     end
 

@@ -18,7 +18,7 @@ function Obstacle:update(dt)
 end
 
 function Obstacle:draw()
-    love.graphics.draw(self.image, self.x, self.y)
+    love.graphics.draw(self.image, self.x + self.image:getWidth(), self.y, 0, -1, 1)
 end
 
 return Obstacle

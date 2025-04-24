@@ -58,9 +58,7 @@ function Stage:update(dt)
 end
 
 function Stage:spawnObstacle(x, y, speed)
-    local obs = Obstacle(speed)
-    obs.x = x
-    obs.y = y
+    local obs = Obstacle(x, y, speed)
     table.insert(self.obstacles, obs)
 end
 

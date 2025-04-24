@@ -154,8 +154,9 @@ function drawPlayState()
 
     bg:drawBackground()
     bg:drawForeground()
-
+    stage:draw()
     player:draw()
+    
 end
 
 function drawStartState()

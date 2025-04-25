@@ -61,7 +61,7 @@ function Stage:update(dt)
         warning:update(dt)
 
         if warning.timer <= 0 then
-            self:spawnRealObstacle(warning.x, warning.y, warning.speed)
+            self:spawnRealObstacle(warning.x + 100, warning.y, warning.speed)
             table.remove(self.warningSigns, j)
         end
     end

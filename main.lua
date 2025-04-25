@@ -71,6 +71,14 @@ function love.keypressed(key)
         gameState = "start"
     elseif key == "r" and gameState=="pause" then
         gameState = "start"
+    elseif key == "e" and gameState=="pause" then
+        love.event.quit()
+    elseif key == "e" and gameState=="start" then
+        love.event.quit()
+    elseif key == "r" and gameState=="over" then
+        gameState = "start"
+    elseif key == "e" and gameState=="over" then
+        love.event.quit()
     end
 end
 
@@ -156,6 +164,10 @@ end
 function drawGameOverState()
     love.graphics.setColor(0.3,0.3,0.3)
     if bg then bg:drawEndGameGround() end
+    love.graphics.setColor(1,1,1)
+    bg:drawOverground()
+    love.graphics.printf("Restart", titleFont2,0,270,gameWidth,"center")
+    love.graphics.printf("Exit", titleFont2,0,340,gameWidth,"center")
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Game Over", titleFont,0,100,gameWidth,"center")
     love.graphics.printf("Highscore: ", titleFont2,0,160,gameWidth,"center")

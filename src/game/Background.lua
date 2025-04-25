@@ -8,6 +8,8 @@ local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
 local bgLight = love.graphics.newImage("graphics/obj/light_double.png")
 local bgButtom = love.graphics.newImage("graphics/HUDandMENU/MENU/Menu Buttom.png")
 local bgHUD = love.graphics.newImage("graphics/HUDandMENU/HUD/HUD Buttom.png")
+local bgHUDpause = love.graphics.newImage("graphics/HUDandMENU/HUD/pause2.png")
+local bgReplay = love.graphics.newImage("graphics/HUDandMENU/MENU/replay2.png")
 
 local Background = Class{}
 function Background:init()
@@ -18,6 +20,8 @@ function Background:init()
     self.bgButtomPos5 = -370
     self.bgHUDPos1 = 25
     self.bgHUDPos2 = -230
+    self.bgHUDpausePos = -560
+    self.bgReplayPos = -265
     self.bgLightPos = 0
     self.bgGroundPos = 0
     self.bgBarrierPos = 0
@@ -63,8 +67,6 @@ end
 
 function Background:drawMenuground()
     drawScaledFullScreen(bgGround6)
-    -- love.graphics.draw(bgButtom,-self.bgBarrierPos,0)
-    -- love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos,0)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-10, self.bgHeight-self.bgButtomPos1-5, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos3-145, self.bgHeight-self.bgButtomPos3, 0, 0.35, 0.35)
@@ -83,20 +85,18 @@ end
 function Background:drawHudground()
     love.graphics.draw(bgHUD,self.bgWidth-self.bgHUDPos1-15, self.bgHeight-self.bgHUDPos1-5, 0, 0.35, 0.35)
     love.graphics.draw(bgHUD,self.bgWidth-self.bgHUDPos2-3, self.bgHeight-self.bgHUDPos2-260, 0, 0.35, 0.35)
+    love.graphics.draw(bgHUDpause,self.bgWidth-self.bgHUDpausePos, self.bgHeight-self.bgHUDpausePos-570, 0, 0.3, 0.3)
 end
 
 function Background:drawPauseground()
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-10, self.bgHeight-self.bgButtomPos1-5, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
+    love.graphics.draw(bgReplay,self.bgWidth-self.bgReplayPos+100, self.bgHeight-self.bgReplayPos, 0, 0.2, 0.2)
 end
 
---function Background:drawForeground()
---    love.graphics.draw(bgLight,-self.bgLightPos,0)
---    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos,0)
-
---    love.graphics.draw(bgBarrier,-self.bgBarrierPos,0)
---    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos,0)
---end
-
+function Background:drawOverground()
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-10, self.bgHeight-self.bgButtomPos1-5, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
+end
 
 return Background

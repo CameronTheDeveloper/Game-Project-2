@@ -3,7 +3,7 @@ local Matrix = require "libs.matrix"
 local Obstacle = require "src.game.Obstacle"
 local Stage = Class{}
 
-function Stage:init(rows, cols, player, ts)
+function Stage:init(rows, cols, player, background, ts)
     self.tileset = ts
     self.rowCount = rows
     self.colCount = cols
@@ -16,7 +16,7 @@ function Stage:init(rows, cols, player, ts)
     self.initialPlayerX = 0
     self.music = nil
     self.obstacles = {} 
-    self.bgs = {} 
+    self.background = background
     self.map = Matrix:new(self.rowCount, self.colCount) 
 
     for row = 1, self.rowCount do
@@ -42,9 +42,8 @@ function Stage:update(dt)
     -- Check if it's time to spawn a new obstacle
     if self.spawnTimer >= self.spawnInterval then
         self.spawnTimer = 0
-
         local x = self:getWidth()
-        local y = math.random(0, self:getHeight() - 64)
+        local y = math.random(self.background.roadTop, self.background.roadBottom - 64)
         local speed = math.random(50, 100)
         self:spawnObstacle(x, y, speed)
     end
@@ -68,6 +67,7 @@ end
 
 function Stage:spawnObstacle(x, y, speed)
     local obs = Obstacle(x, y, speed)
+    
     table.insert(self.obstacles, obs)
 end
 

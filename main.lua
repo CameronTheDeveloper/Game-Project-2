@@ -31,7 +31,7 @@ function love.load()
     hud = HUD(player)
     local tileImage = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
 
-    stage = Stage(10, 15, player, {
+    stage = Stage(10, 15, player, bg, {
         tileSize = 64,
         getImage = function()
             return tileImage
@@ -133,7 +133,7 @@ function drawPlayState()
 
     -- hud:draw()
 
-    bg:drawBackground()
+    bg:drawPlayBackground()
     bg:drawHudground()
     -- bg:drawForeground()
     stage:draw()
@@ -155,7 +155,7 @@ end
 
 function drawGameOverState()
     love.graphics.setColor(0.3,0.3,0.3)
-    if bg then bg:drawGameground() end
+    if bg then bg:drawEndGameGround() end
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Game Over", titleFont,0,100,gameWidth,"center")
     love.graphics.printf("Highscore: ", titleFont2,0,160,gameWidth,"center")
@@ -163,7 +163,7 @@ end
 
 function drawPauseState()
     love.graphics.setColor(0.3,0.3,0.3)
-    if bg then bg:drawGameground() end
+    if bg then bg:drawEndGameGround() end
     love.graphics.setColor(1,1,1)
     bg:drawPauseground()
     love.graphics.printf("Resume", titleFont2,0,270,gameWidth,"center")

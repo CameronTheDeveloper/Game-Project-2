@@ -8,7 +8,8 @@ local Background = require "src.game.Background"
 local bg = Background()
 local player
 local stage
-local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",26)
+local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",65)
+local titleFont2 = love.graphics.newFont("fonts/Abaddon_Bold.ttf",35)
 
 -- local HUD = require "src.game.HUD."
 
@@ -165,9 +166,9 @@ function drawStartState()
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Drive,\nDodge,\nDash!!!", titleFont,0,20,gameWidth,"center")
     love.graphics.setColor(1,1,1)
-    love.graphics.printf("Start", 0,120,gameWidth,"center")
-    love.graphics.printf("Cars", 0,140,gameWidth,"center")
-    love.graphics.printf("Exit", 0,160,gameWidth,"center")
+    love.graphics.printf("Start", titleFont2,0,270,gameWidth,"center")
+    love.graphics.printf("Cars", titleFont2,0,340,gameWidth,"center")
+    love.graphics.printf("Exit", titleFont2,0,410,gameWidth,"center")
 
 end
 

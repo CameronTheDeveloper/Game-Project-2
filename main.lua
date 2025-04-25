@@ -43,44 +43,25 @@ function love.load()
 end
 
 function love.update(dt)
-    handleInput(dt)
     if gameState == "play" then
         player:update(dt)
         stage:update(dt)
     end
 end
 
-function handleInput(dt)
-    
-    if love.keyboard.isDown("return") and gameState == "start" then
+
+
+function love.keypressed(key)
+    if key == "escape" then
+        love.event.quit()
+    elseif key == "p" and gameState=="play" then
+        gameState = "pause"
+    elseif key == "p" and gameState=="pause" then
+        gameState = "play"
+    elseif key == "return" and gameState~="play" then
         gameState = "play"
     end
-    
-    -- Pause 
-    if love.keyboard.isDown("p") then
-        if gameState == "play" then 
-            gameState = "pause"
-        elseif gameState == "pause" then
-            gameState = "play"
-        end
-    end
-
-    if love.keyboard.isDown("escape") then 
-        love.event.quit()
-    end
 end
-
--- function love.keypressed(key)
---     if key == "escape" then
---         love.event.quit()
---     elseif key == "F2" or key == "tab" then
---         debugFlag = not debugFlag
---     elseif key == "p" and gameState=="pause" then
---         gameState = "pause"
---     else 
---         player:keypressed(key)
---     end
--- end
 
 
 -- function love.draw()

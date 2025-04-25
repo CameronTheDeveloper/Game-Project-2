@@ -14,7 +14,7 @@ function Player:init(spriteIndex, roadTop, roadBottom)
     self.timeElapsed = 0
     self.image = carSprites[spriteIndex or 1] -- Default value
     self.score = 0
-    self.scoreRate = 1
+    self.scoreRate = 2.5
     self.timeElapsed = 0
     self.speed = 100
 

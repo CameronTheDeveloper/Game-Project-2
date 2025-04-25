@@ -8,6 +8,9 @@ local Background = require "src.game.Background"
 local bg = Background()
 local player
 local stage
+local tileSize
+
+
 local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",26)
 
 -- local HUD = require "src.game.HUD."
@@ -29,8 +32,12 @@ function love.load()
             return tileImage
         end
     })
-    
 
+    player.stageHeight = stage:getHeight()
+    player.stageWidth = stage:getWidth()
+
+    
+    -- tileSize = stage:getTileSize()
     -- Set the window size to match the stage
     -- love.window.setMode(stage:getWidth(), stage:getHeight())
 end
@@ -44,28 +51,9 @@ function love.update(dt)
 end
 
 function handleInput(dt)
-    local speed = player.speed
-    local tileSize = stage:getTileSize()
-    local stageWidth = stage:getWidth()
-    local stageHeight = stage:getHeight()
-    local carWidth = player.image:getWidth()
-    local carHeight = player.image:getHeight()
-
+    
     if love.keyboard.isDown("return") and gameState == "start" then
         gameState = "play"
-    end
-
-    if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
-        player.x = math.max(0, player.x - speed * dt)
-    end
-    if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
-        player.x = math.min(stageWidth - carWidth, player.x + speed * dt)
-    end
-    if love.keyboard.isDown("up") or love.keyboard.isDown("w") then
-        player.y = math.max(0, player.y - speed * dt)
-    end
-    if love.keyboard.isDown("down") or love.keyboard.isDown("s") then
-        player.y = math.min(stageHeight - carHeight, player.y + speed * dt)
     end
     
     -- Pause 

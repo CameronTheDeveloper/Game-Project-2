@@ -17,6 +17,30 @@ function Player:init(spriteIndex)
     self.scoreRate = 1
     self.timeElapsed = 0
     self.speed = 100
+
+    self.width = self.image:getWidth()
+    self.height = self.image:getHeight()
+    self.stageWidth = nil
+    self.stageHeight = nil
+
+end
+
+
+--Seperating function 
+function Player:handlePlayerInput(dt)
+
+    if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
+        self.x = math.max(0, self.x - self.speed * dt)
+    end
+    if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
+        self.x = math.min(self.stageWidth - self.width, self.x + self.speed * dt)
+    end
+    if love.keyboard.isDown("up") or love.keyboard.isDown("w") then
+        self.y = math.max(0, self.y - self.speed * dt)
+    end
+    if love.keyboard.isDown("down") or love.keyboard.isDown("s") then
+        self.y = math.min(self.stageHeight - self.height, self.y + self.speed * dt)
+    end
 end
 
 function Player:update(dt)
@@ -24,7 +48,10 @@ function Player:update(dt)
 
     -- Add score every second (or fraction thereof)
     self.score = self.score + self.scoreRate * dt
+    self:handlePlayerInput(dt)
 end
+
+
 
 function Player:draw()
     love.graphics.draw(self.image, self.x, self.y)

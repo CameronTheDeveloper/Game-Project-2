@@ -152,7 +152,7 @@ end
 
 function drawGameOverState()
     love.graphics.setColor(0.3,0.3,0.3)
-    if bg then bg:drawGameground() end
+    if bg then bg:drawEndGameGround() end
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Game Over", titleFont,0,100,gameWidth,"center")
     love.graphics.printf("Highscore: ", titleFont2,0,160,gameWidth,"center")
@@ -160,7 +160,7 @@ end
 
 function drawPauseState()
     love.graphics.setColor(0.3,0.3,0.3)
-    if bg then bg:drawGameground() end 
+    if bg then bg:drawEndGameGround() end 
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Game Paused", titleFont,0,100,gameWidth,"center")
 end

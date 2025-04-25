@@ -50,7 +50,7 @@ function Background:drawCarground()
     drawScaledFullScreen(bgGround1)
 end
 
-function Background:drawGameground()
+function Background:drawEndGameGround()
     drawScaledFullScreen(bgHighway)
 end
 

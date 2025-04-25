@@ -17,6 +17,7 @@ function Background:init()
     self.bgWidth = bgBarrier:getWidth() -- 853
     self.bgHeight = bgBarrier:getHeight()
     self.bgSpeed = 30
+    self.roadTop = math.floor(gameHeight / 2)
 end
 
 function Background:update(dt)
@@ -34,13 +35,12 @@ local function drawScaledFullScreen(image)
     love.graphics.draw(image, 0, 0, 0, scaleX, scaleY)
 end
 
-local function drawGameRoad()
+local function drawGameRoad(roadTop)
     local roadTileWidth = bgHighway:getWidth()
     local roadTileHeight = bgHighway:getHeight()
 
-    local startY = math.floor(gameHeight / 2)
 
-    for y = startY, gameHeight - 1, roadTileHeight do
+    for y = roadTop, gameHeight - 1, roadTileHeight do
         for x = 0, gameWidth - 1, roadTileWidth do
             love.graphics.draw(bgHighway, x, y)
         end
@@ -49,7 +49,7 @@ end
 
 function Background:drawPlayBackground()
     drawScaledFullScreen(bgGround7)
-    drawGameRoad()
+    drawGameRoad(self.roadTop)
 end
 
 function Background:drawMenuground()

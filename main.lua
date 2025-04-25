@@ -26,6 +26,13 @@ function love.load()
     love.window.setTitle("Drive,Dodge,Dash!!!")
     Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = false, resizable = true})
 
+    sounds = {} -- create an empty table
+    sounds['music'] = love.audio.newSource("sounds/Background_music/Juhani Junkala [Retro Game Music Pack] Level 1.wav","static")
+    sounds['music2'] = love.audio.newSource("sounds/Background_music/Juhani Junkala [Retro Game Music Pack] Level 2.wav","static")
+    sounds['music3'] = love.audio.newSource("sounds/Menu_music/ElevatorMusic.wav","static")
+    sounds['music4'] = love.audio.newSource("sounds/Menu_music/Juhani Junkala [Retro Game Music Pack] Ending.wav","static")
+    sounds["music"]:setLooping(true)
+    sounds["music"]:play()
 
     player = Car(1) -- 1 = green car
     hud = HUD(player)
@@ -61,22 +68,39 @@ function love.keypressed(key)
         love.event.quit()
     elseif key == "p" and gameState=="play" then
         gameState = "pause"
+        sounds["music2"]:stop()
+        sounds['music3']:setLooping(true)
+        sounds['music3']:play()
     elseif key == "p" and gameState=="pause" then
         gameState = "play"
+        sounds['music3']:stop()
+        sounds['music2']:setLooping(true)
+        sounds['music2']:play()
     elseif key == "return" and gameState=="start" then
         gameState = "play"
+        sounds["music"]:stop()
+        sounds['music2']:setLooping(true)
+        sounds['music2']:play()
     elseif key == "c" and gameState=="start" then
         gameState = "cars"
     elseif key == "e" and gameState=="cars" then
         gameState = "start"
+        sounds["music"]:setLooping(true)
+        sounds["music"]:play()
     elseif key == "r" and gameState=="pause" then
         gameState = "start"
+        sounds['music3']:stop()
+        sounds["music"]:setLooping(true)
+        sounds["music"]:play()
     elseif key == "e" and gameState=="pause" then
         love.event.quit()
     elseif key == "e" and gameState=="start" then
         love.event.quit()
     elseif key == "r" and gameState=="over" then
         gameState = "start"
+        sounds["music4"]:stop()
+        sounds["music"]:setLooping(true)
+        sounds["music"]:play()
     elseif key == "e" and gameState=="over" then
         love.event.quit()
     end
@@ -125,6 +149,9 @@ function love.draw()
         drawPauseState()
     elseif gameState == "over" then
         drawGameOverState()
+        sounds["music2"]:stop()
+        sounds['music4']:setLooping(true)
+        sounds['music4']:play()
     elseif gameState == "cars" then
         drawCarSelectState()
     else
@@ -170,7 +197,7 @@ function drawGameOverState()
     love.graphics.printf("Exit", titleFont2,0,340,gameWidth,"center")
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Game Over", titleFont,0,100,gameWidth,"center")
-    love.graphics.printf("Highscore: ", titleFont2,0,160,gameWidth,"center")
+    love.graphics.printf("Highscore: "..player.score, titleFont2,0,160,gameWidth,"center")
 end
 
 function drawPauseState()

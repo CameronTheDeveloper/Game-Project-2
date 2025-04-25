@@ -34,8 +34,13 @@ local function drawScaledFullScreen(image)
     love.graphics.draw(image, 0, 0, 0, scaleX, scaleY)
 end
 
+local function drawGameRoad()
+    love.graphics.draw(bgHighway, 0, 0)
+end
+
 function Background:drawBackground()
     drawScaledFullScreen(bgGround7)
+    drawGameRoad()
 end
 
 function Background:drawMenuground()

@@ -5,11 +5,16 @@ local Stage = require "src.game.stages.Stage"
 local Sounds = require "src.game.Sounds"
 local Background = require "src.game.Background"
 
+local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",65)
+local titleFont2 = love.graphics.newFont("fonts/Abaddon_Bold.ttf",35)
+
 local bg = Background()
 local player
 local stage
-local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",65)
-local titleFont2 = love.graphics.newFont("fonts/Abaddon_Bold.ttf",35)
+local tileSize
+
+
+
 
 -- local HUD = require "src.game.HUD."
 
@@ -30,70 +35,36 @@ function love.load()
             return tileImage
         end
     })
-    
 
+    player.stageHeight = stage:getHeight()
+    player.stageWidth = stage:getWidth()
+
+    
+    -- tileSize = stage:getTileSize()
     -- Set the window size to match the stage
     -- love.window.setMode(stage:getWidth(), stage:getHeight())
 end
 
 function love.update(dt)
-    handleInput(dt)
     if gameState == "play" then
         player:update(dt)
         stage:update(dt)
     end
 end
 
-function handleInput(dt)
-    local speed = player.speed
-    local tileSize = stage:getTileSize()
-    local stageWidth = stage:getWidth()
-    local stageHeight = stage:getHeight()
-    local carWidth = player.image:getWidth()
-    local carHeight = player.image:getHeight()
 
-    if love.keyboard.isDown("return") and gameState == "start" then
+
+function love.keypressed(key)
+    if key == "escape" then
+        love.event.quit()
+    elseif key == "p" and gameState=="play" then
+        gameState = "pause"
+    elseif key == "p" and gameState=="pause" then
+        gameState = "play"
+    elseif key == "return" and gameState~="play" then
         gameState = "play"
     end
-
-    if love.keyboard.isDown("left") or love.keyboard.isDown("a") then
-        player.x = math.max(0, player.x - speed * dt)
-    end
-    if love.keyboard.isDown("right") or love.keyboard.isDown("d") then
-        player.x = math.min(stageWidth - carWidth, player.x + speed * dt)
-    end
-    if love.keyboard.isDown("up") or love.keyboard.isDown("w") then
-        player.y = math.max(0, player.y - speed * dt)
-    end
-    if love.keyboard.isDown("down") or love.keyboard.isDown("s") then
-        player.y = math.min(stageHeight - carHeight, player.y + speed * dt)
-    end
-    
-    -- Pause 
-    if love.keyboard.isDown("p") then
-        if gameState == "play" then 
-            gameState = "pause"
-        elseif gameState == "pause" then
-            gameState = "play"
-        end
-    end
-
-    if love.keyboard.isDown("escape") then 
-        love.event.quit()
-    end
 end
-
--- function love.keypressed(key)
---     if key == "escape" then
---         love.event.quit()
---     elseif key == "F2" or key == "tab" then
---         debugFlag = not debugFlag
---     elseif key == "p" and gameState=="pause" then
---         gameState = "pause"
---     else 
---         player:keypressed(key)
---     end
--- end
 
 
 -- function love.draw()

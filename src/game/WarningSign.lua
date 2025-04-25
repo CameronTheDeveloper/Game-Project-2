@@ -1,13 +1,15 @@
 local Class = require "libs.hump.class"
 local Tween = require "libs.tween"
 
-local warningSprite = require "/graphics/HUDandMENU/HUD/Warning_sign.png"
+local warningSprite = love.graphics.newImage("/graphics/HUDandMENU/HUD/Warning_sign.png")
 local WarningSign = Class{}
 
 function WarningSign:init(x, y)
     self.x = x
     self.y = y 
     self.alpha = 0
+    self.warningLeadTimer = 0.5
+    self.speed = nil
     
     self.tween = tween.new(1, self, {x = love.graphics.getWidth() - 100, alpha = 1}, "inOutQuad")
 end

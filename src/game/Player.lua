@@ -8,9 +8,9 @@ carSprites[3] = love.graphics.newImage("/graphics/cars/sports_yellow.png")
 
 local Player = Class{}
 
-function Player:init(spriteIndex)
+function Player:init(spriteIndex, roadTop, roadBottom)
     self.x = 0
-    self.y = 0
+    self.y = roadTop + (roadBottom - roadTop) / 2 -- Center car on road
     self.timeElapsed = 0
     self.image = carSprites[spriteIndex or 1] -- Default value
     self.score = 0

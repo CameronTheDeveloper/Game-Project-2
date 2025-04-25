@@ -27,7 +27,7 @@ function love.load()
     Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = false, resizable = true})
 
 
-    player = Car(1) -- 1 = green car
+    player = Car(1, bg.roadTop, bg.roadBottom) -- 1 = green car
     hud = HUD(player)
     local tileImage = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
 

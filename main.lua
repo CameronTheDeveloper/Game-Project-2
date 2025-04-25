@@ -131,7 +131,7 @@ function drawPlayState()
 
     -- hud:draw()
 
-    bg:drawBackground()
+    bg:drawPlayBackground()
     -- bg:drawForeground()
     stage:draw()
     player:draw()

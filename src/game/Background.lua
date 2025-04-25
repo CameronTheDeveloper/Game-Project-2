@@ -38,7 +38,7 @@ local function drawGameRoad()
     love.graphics.draw(bgHighway, 0, 0)
 end
 
-function Background:drawBackground()
+function Background:drawPlayBackground()
     drawScaledFullScreen(bgGround7)
     drawGameRoad()
 end

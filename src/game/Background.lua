@@ -10,6 +10,10 @@ local bgButtom = love.graphics.newImage("graphics/HUDandMENU/MENU/Menu Buttom.pn
 local bgHUD = love.graphics.newImage("graphics/HUDandMENU/HUD/HUD Buttom.png")
 local bgHUDpause = love.graphics.newImage("graphics/HUDandMENU/HUD/pause2.png")
 local bgReplay = love.graphics.newImage("graphics/HUDandMENU/MENU/replay2.png")
+local bgCarpic1 = love.graphics.newImage("graphics/cars/sports_race.png")
+local bgCarpic2 = love.graphics.newImage("graphics/cars/sports_green.png")
+local bgCarpic3 = love.graphics.newImage("graphics/cars/sports_red.png")
+local bgCarpic4 = love.graphics.newImage("graphics/cars/sports_yellow.png")
 
 local Background = Class{}
 function Background:init()
@@ -22,6 +26,7 @@ function Background:init()
     self.bgHUDPos2 = -230
     self.bgHUDpausePos = -560
     self.bgReplayPos = -265
+    self.bgCarpicPos = -200
     self.bgLightPos = 0
     self.bgGroundPos = 0
     self.bgBarrierPos = 0
@@ -76,6 +81,11 @@ function Background:drawCarground()
     drawScaledFullScreen(bgGround1)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos4-75, self.bgHeight-self.bgButtomPos4, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos5-145, self.bgHeight-self.bgButtomPos5, 0, 0.35, 0.35)
+
+    love.graphics.draw(bgCarpic1,self.bgWidth-self.bgCarpicPos+260, self.bgHeight-self.bgCarpicPos, 0, 3.5, 3.5)
+    love.graphics.draw(bgCarpic2,self.bgWidth-self.bgCarpicPos-40, self.bgHeight-self.bgCarpicPos, 0, 3.5, 3.5)
+    love.graphics.draw(bgCarpic3,self.bgWidth-self.bgCarpicPos+110, self.bgHeight-self.bgCarpicPos, 0, 3.5, 3.5)
+    love.graphics.draw(bgCarpic4,self.bgWidth-self.bgCarpicPos-190, self.bgHeight-self.bgCarpicPos, 0, 3.5, 3.5)
 end
 
 function Background:drawEndGameGround()

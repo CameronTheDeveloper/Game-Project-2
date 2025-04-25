@@ -10,7 +10,7 @@ local bgButtom = love.graphics.newImage("graphics/HUDandMENU/MENU/Menu Buttom.pn
 
 local Background = Class{}
 function Background:init()
-    self.bgButtomPos = 0
+    self.bgButtomPos = -180
     self.bgLightPos = 0
     self.bgGroundPos = 0
     self.bgBarrierPos = 0

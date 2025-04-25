@@ -1,6 +1,8 @@
 local Class = require "libs.hump.class"
 local Matrix = require "libs.matrix"
 local Obstacle = require "src.game.Obstacle"
+local WarningSign = require "src.game.WarningSign"
+
 local Stage = Class{}
 
 function Stage:init(rows, cols, player, background, ts)
@@ -16,6 +18,9 @@ function Stage:init(rows, cols, player, background, ts)
     self.initialPlayerX = 0
     self.music = nil
     self.obstacles = {} 
+    self.warningSigns = {}
+    self.warningLeadTime = 0.5
+
     self.background = background
     self.map = Matrix:new(self.rowCount, self.colCount) 
 
@@ -48,6 +53,17 @@ function Stage:update(dt)
         self:spawnObstacle(x, y, speed)
     end
 
+    for j = #self.warningSigns, 1, -1 do
+        local warning = self.warningSigns[j]
+        warning.timer = warning.timer - dt
+        warning:update(dt)
+
+        if warning.timer <= 0 then
+            self:spawnRealObstacle(warning.x, warning.y, warning.speed)
+            table.remove(self.warningSigns, j)
+        end
+    end
+
     for i = 1, #self.obstacles do
         self.obstacles[i]:update(dt)
 
@@ -66,9 +82,10 @@ function Stage:update(dt)
 end
 
 function Stage:spawnObstacle(x, y, speed)
-    local obs = Obstacle(x, y, speed)
-    
-    table.insert(self.obstacles, obs)
+    local warning = WarningSign(x, y)
+    warning.timer = self.warningLeadTime
+    warning.speed = speed
+    table.insert(self.warningSigns, warning)
 end
 
 function Stage:getWidth()
@@ -93,6 +110,10 @@ function Stage:draw()
     for k=1, #self.obstacles do
         self.obstacles[k]:draw()
     end
+
+    for j = 1, #self.warningSigns do 
+        self.warningSigns[j]:draw()
+    end
 end
 
 
@@ -108,6 +129,11 @@ function Stage:drawTile(row, col)
             curTile.flipVer or 1
         )
     end
+end
+
+function Stage:spawnRealObstacle(x, y, speed)
+    local obs = Obstacle(x, y, speed)
+    table.insert(self.obstacles, obs)
 end
 
 

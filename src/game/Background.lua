@@ -10,11 +10,12 @@ local bgButtom = love.graphics.newImage("graphics/HUDandMENU/MENU/Menu Buttom.pn
 
 local Background = Class{}
 function Background:init()
-    self.bgButtomPos = -180
+    self.bgButtomPos = -210
     self.bgLightPos = 0
     self.bgGroundPos = 0
     self.bgBarrierPos = 0
     self.bgWidth = bgBarrier:getWidth() -- 853
+    self.bgHeight = bgBarrier:getHeight()
     self.bgSpeed = 30
 end
 
@@ -41,7 +42,7 @@ function Background:drawMenuground()
     drawScaledFullScreen(bgGround6)
     -- love.graphics.draw(bgButtom,-self.bgBarrierPos,0)
     -- love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos,0)
-    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos, 0, 0, 0.5, 0.5)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos-15, self.bgHeight-self.bgButtomPos, 0, 0.5, 0.5)
     
 end
 

@@ -40,7 +40,7 @@ function Background:drawMenuground()
 end
 
 function Background:drawCarground()
-    drawScaledFullScreen(bgGround6)
+    drawScaledFullScreen(bgGround1)
 end
 
 function Background:drawGameground()

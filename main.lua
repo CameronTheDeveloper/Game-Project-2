@@ -175,19 +175,21 @@ end
 function drawGameOverState()
     love.graphics.setColor(0.3,0.3,0.3)
     if bg then bg:drawGameground() end
-    love.graphics.setColor(0,0,1)
-    love.graphics.printf("Game Over", titleFont,0,20,gameWidth,"center")
+    love.graphics.setColor(1,0,0)
+    love.graphics.printf("Game Over", titleFont,0,100,gameWidth,"center")
+    love.graphics.printf("Highscore: ", titleFont2,0,160,gameWidth,"center")
 end
 
 function drawPauseState()
     love.graphics.setColor(0.3,0.3,0.3)
     if bg then bg:drawGameground() end 
-    love.graphics.setColor(0,0,1)
-    love.graphics.printf("Game Paused", titleFont,0,20,gameWidth,"center")
+    love.graphics.setColor(1,0,0)
+    love.graphics.printf("Game Paused", titleFont,0,100,gameWidth,"center")
 end
 
 function drawCarSelectState()
     if bg then bg:drawCarground() end
     love.graphics.setColor(0,0,1)
-    love.graphics.printf("Game Paused", titleFont,0,20,gameWidth,"center")
+    love.graphics.printf("Select", titleFont2,0,340,gameWidth,"center")
+    love.graphics.printf("Leave", titleFont2,0,410,gameWidth,"center")
 end

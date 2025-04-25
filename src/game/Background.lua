@@ -6,9 +6,11 @@ local bgGround7 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.
 local bgHighway = love.graphics.newImage("graphics/tilesets/tile/Highway_road (96 x 64).png")
 local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
 local bgLight = love.graphics.newImage("graphics/obj/light_double.png")
+local bgButtom = love.graphics.newImage("graphics/HUDandMENU/MENU/Menu Buttom.png")
 
 local Background = Class{}
 function Background:init()
+    self.bgButtomPos = 140
     self.bgLightPos = 0
     self.bgGroundPos = 0
     self.bgBarrierPos = 0
@@ -37,6 +39,8 @@ end
 
 function Background:drawMenuground()
     drawScaledFullScreen(bgGround6)
+    love.graphics.draw(bgButtom,-self.bgBarrierPos,0)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos,0)
 end
 
 function Background:drawCarground()

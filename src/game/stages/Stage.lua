@@ -85,7 +85,7 @@ function Stage:spawnObstacle(x, y, speed)
     -- Create a warning sign first before spawning an obstacle
     local warning = WarningSign(x, y)
     warning.timer = self.warningLeadTime
-    warning.speed = speed
+    warning.speed = speed / 2
     table.insert(self.warningSigns, warning)
 end
 

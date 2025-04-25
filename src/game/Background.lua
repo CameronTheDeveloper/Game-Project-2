@@ -18,7 +18,7 @@ function Background:init()
     self.bgHeight = bgBarrier:getHeight()
     self.bgSpeed = 30
 
-    self.roadTop = math.floor(gameHeight / 2)
+    self.roadTop = math.floor(gameHeight / 2) + bgHighway:getHeight()
     self.roadBottom = gameHeight - 1
 end
 

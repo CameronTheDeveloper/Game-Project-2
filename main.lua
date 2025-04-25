@@ -167,10 +167,11 @@ function drawPlayState()
     -- stagemanager:currentStage():draw()
 
     -- hud:draw()
-
+    bg:drawMapBackground()
+    bg:drawBackobjground2()
     bg:drawPlayBackground()
+    bg:drawBackobjground()
     bg:drawHudground()
-    -- bg:drawForeground()
     stage:draw()
     player:draw()
     hud:draw()

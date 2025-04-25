@@ -27,9 +27,9 @@ function Background:init()
     self.bgHUDpausePos = -560
     self.bgReplayPos = -265
     self.bgCarpicPos = -200
-    self.bgLightPos = 0
+    self.bgLightPos = -200
+    self.bgBarrierPos = -270
     self.bgGroundPos = 0
-    self.bgBarrierPos = 0
     self.bgWidth = bgBarrier:getWidth() -- 853
     self.bgHeight = bgBarrier:getHeight()
     self.bgSpeed = 30
@@ -65,8 +65,11 @@ local function drawGameRoad(roadTop, roadBottom)
     end
 end
 
-function Background:drawPlayBackground()
+function Background:drawMapBackground()
     drawScaledFullScreen(bgGround7)
+end
+
+function Background:drawPlayBackground()
     drawGameRoad(self.roadTop, self.roadBottom)
 end
 
@@ -107,6 +110,40 @@ end
 function Background:drawOverground()
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-10, self.bgHeight-self.bgButtomPos1-5, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
+end
+
+function Background:drawBackobjground()
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-300, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-270, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-240, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-210, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-180, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-150, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-120, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-90, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-60, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-30, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+30, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+60, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+90, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+120, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+150, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+180, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+210, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+240, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+270, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+300, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+330, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+end
+
+function Background:drawBackobjground2()
+    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos, self.bgHeight-self.bgLightPos, 0, 3, 3)
+    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos-100, self.bgHeight-self.bgLightPos, 0, 3, 3)
+    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos+100, self.bgHeight-self.bgLightPos, 0, 3, 3)
+    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos+200, self.bgHeight-self.bgLightPos, 0, 3, 3)
+    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos+300, self.bgHeight-self.bgLightPos, 0, 3, 3)
+    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos-200, self.bgHeight-self.bgLightPos, 0, 3, 3)
 end
 
 return Background

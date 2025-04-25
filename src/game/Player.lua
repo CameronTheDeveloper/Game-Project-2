@@ -18,6 +18,9 @@ function Player:init(spriteIndex, roadTop, roadBottom)
     self.timeElapsed = 0
     self.speed = 100
 
+    self.roadTop = roadTop
+    self.roadBottom = roadBottom
+
     self.width = self.image:getWidth()
     self.height = self.image:getHeight()
     self.stageWidth = nil
@@ -36,10 +39,10 @@ function Player:handlePlayerInput(dt)
         self.x = math.min(self.stageWidth - self.width, self.x + self.speed * dt)
     end
     if love.keyboard.isDown("up") or love.keyboard.isDown("w") then
-        self.y = math.max(0, self.y - self.speed * dt)
+        self.y = math.max(self.roadTop, self.y - self.speed * dt)
     end
     if love.keyboard.isDown("down") or love.keyboard.isDown("s") then
-        self.y = math.min(self.stageHeight - self.height, self.y + self.speed * dt)
+        self.y = math.min(self.roadBottom - self.height, self.y + self.speed * dt)
     end
 end
 

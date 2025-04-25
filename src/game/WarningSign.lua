@@ -6,12 +6,12 @@ local WarningSign = Class{}
 
 function WarningSign:init(x, y)
     self.x = x
-    self.y = y 
-    self.alpha = 0
-    self.warningLeadTimer = 0.5
+    self.y = y
+    self.alpha = 1 
+    self.timer = 0.5
     self.speed = nil
-    
-    self.tween = Tween.new(1, self, {alpha = 1}, "inOutQuad")
+
+    self.tween = Tween.new(0.4, self, {x = love.graphics.getWidth() - 100, alpha = 1}, "inOutQuad")
 end
 
 function WarningSign:update(dt)
@@ -24,10 +24,10 @@ function WarningSign:update(dt)
 end
 
 function WarningSign:draw()
-    love.graphics.setColor(1, 1, 1, self.alpha)
+    -- Red to visually debug
+    love.graphics.setColor(1, 0, 0, self.alpha) -- Temporary color red
     love.graphics.draw(warningSprite, self.x, self.y)
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, 1) -- Reset color
 end
-
 
 return WarningSign

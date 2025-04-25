@@ -5,13 +5,13 @@ local warningSprite = love.graphics.newImage("/graphics/HUDandMENU/HUD/Warning_s
 local WarningSign = Class{}
 
 function WarningSign:init(x, y)
-    self.x = 550
+    self.x = 575
     self.y = y
-    self.alpha = 1 
-    self.timer = 0.5
+    self.alpha = 0.75
+    self.timer = 0.65
     self.speed = nil
 
-    self.tween = Tween.new(0.4, self, {x = love.graphics.getWidth() - 80, alpha = 1}, "inOutQuad")
+    self.tween = Tween.new(1, self, {x = love.graphics.getWidth() - 80, alpha = 1}, "inOutQuad")
 end
 
 function WarningSign:update(dt)

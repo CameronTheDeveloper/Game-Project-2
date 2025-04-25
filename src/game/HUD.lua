@@ -15,7 +15,7 @@ end
 
 
 function HUD:draw()
-    love.graphics.printf("Score:"..math.floor(self.player.score), hudFont, 240, 4, 80, "right")
+    love.graphics.printf("Score:"..math.floor(self.player.score), hudFont, 10, 4, 100, "left")
 end
 
 return HUD

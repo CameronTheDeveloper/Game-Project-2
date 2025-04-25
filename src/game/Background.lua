@@ -47,13 +47,13 @@ function Background:drawGameground()
     drawScaledFullScreen(bgHighway)
 end
 
-function Background:drawForeground()
-    love.graphics.draw(bgLight,-self.bgLightPos,0)
-    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos,0)
+--function Background:drawForeground()
+--    love.graphics.draw(bgLight,-self.bgLightPos,0)
+--    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos,0)
 
-    love.graphics.draw(bgBarrier,-self.bgBarrierPos,0)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos,0)
-end
+--    love.graphics.draw(bgBarrier,-self.bgBarrierPos,0)
+--    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos,0)
+--end
 
 
 return Background

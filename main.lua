@@ -21,10 +21,8 @@ local tileSize
 function love.load()
     math.randomseed(os.time())
     love.window.setTitle("Drive,Dodge,Dash!!!")
-    Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {
-        fullscreen = false, 
-        resizable = true
-    })
+    Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = false, resizable = true})
+
 
     player = Car(1) -- 1 = green car
     local tileImage = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
@@ -126,14 +124,14 @@ function drawPlayState()
     -- hud:draw()
 
     bg:drawBackground()
-    bg:drawForeground()
+    -- bg:drawForeground()
     stage:draw()
     player:draw()
     
 end
 
 function drawStartState()
-    if bg then bg:drawMenuground() end
+    bg:drawMenuground()
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Drive,\nDodge,\nDash!!!", titleFont,0,20,gameWidth,"center")
     love.graphics.setColor(1,1,1)

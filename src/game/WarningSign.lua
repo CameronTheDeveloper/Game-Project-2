@@ -11,7 +11,7 @@ function WarningSign:init(x, y)
     self.warningLeadTimer = 0.5
     self.speed = nil
     
-    self.tween = tween.new(1, self, {x = love.graphics.getWidth() - 100, alpha = 1}, "inOutQuad")
+    self.tween = Tween.new(1, self, {x = love.graphics.getWidth() - 100, alpha = 1}, "inOutQuad")
 end
 
 function WarningSign:update(dt)

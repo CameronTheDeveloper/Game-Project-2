@@ -24,24 +24,27 @@ function Background:update(dt)
 
 end
 
+local function drawScaledFullScreen(image)
+    local scaleX = gameWidth / image:getWidth()
+    local scaleY = gameHeight / image:getHeight()
+
+    love.graphics.draw(image, 0, 0, 0, scaleX, scaleY)
+end
+
 function Background:drawBackground()
-    love.graphics.draw(bgGround7,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround7,self.bgWidth-self.bgGroundPos,0)
+    drawScaledFullScreen(bgGround7)
 end
 
 function Background:drawMenuground()
-    love.graphics.draw(bgGround6,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround6,self.bgWidth-self.bgGroundPos,0)
+    drawScaledFullScreen(bgGround6)
 end
 
 function Background:drawCarground()
-    love.graphics.draw(bgGround1,-self.bgGroundPos,0)
-    love.graphics.draw(bgGround1,self.bgWidth-self.bgGroundPos,0)
+    drawScaledFullScreen(bgGround6)
 end
 
 function Background:drawGameground()
-    love.graphics.draw(bgHighway,-self.bgGroundPos,0)
-    love.graphics.draw(bgHighway,self.bgWidth-self.bgGroundPos,0)
+    drawScaledFullScreen(bgHighway)
 end
 
 function Background:drawForeground()

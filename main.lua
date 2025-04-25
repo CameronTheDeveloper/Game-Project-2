@@ -32,7 +32,7 @@ function love.load()
     
 
     -- Set the window size to match the stage
-    love.window.setMode(stage:getWidth(), stage:getHeight())
+    -- love.window.setMode(stage:getWidth(), stage:getHeight())
 end
 
 function love.update(dt)

@@ -16,6 +16,7 @@ end
 
 function HUD:draw()
     love.graphics.printf("Score:"..math.floor(self.player.score), hudFont, 10, 4, 100, "left")
+    love.graphics.printf("Time:"..math.floor(self.player.timeElapsed), hudFont, 0, 4, gameWidth, "center")
 end
 
 return HUD

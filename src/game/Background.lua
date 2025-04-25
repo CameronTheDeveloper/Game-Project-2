@@ -35,7 +35,16 @@ local function drawScaledFullScreen(image)
 end
 
 local function drawGameRoad()
-    love.graphics.draw(bgHighway, 0, 0)
+    local roadTileWidth = bgHighway:getWidth()
+    local roadTileHeight = bgHighway:getHeight()
+
+    local startY = math.floor(gameHeight / 2)
+
+    for y = startY, gameHeight - 1, roadTileHeight do
+        for x = 0, gameWidth - 1, roadTileWidth do
+            love.graphics.draw(bgHighway, x, y)
+        end
+    end
 end
 
 function Background:drawPlayBackground()

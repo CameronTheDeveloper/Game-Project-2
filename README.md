@@ -24,8 +24,6 @@ image instead.
 
 ## Game Logic
 
-- Background and objects move left
-- Car can move up, down, left, right
 - Score system - Score goes up by time
 
 ## Car/Player
@@ -35,30 +33,13 @@ image instead.
 
 - _Method_ Update
 - _Method_ draw
-- _Method_
 
 ## Obstacles
 
 - cordinates (x and y)
 
-- _Method_ Update
-- _Method_ draw
-
-### main
-
-### Update
-
-* Calls background update
-* Calls car update
-* Calls drawStartState
-* Calls drawPlayState
-*
-
 
 ## Game Menu 
-
-- Add effects when clicking on menu
-
 
 ## HUD 
 

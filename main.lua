@@ -31,7 +31,7 @@ function love.load()
     hud = HUD(player)
     local tileImage = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
 
-    stage = Stage(10, 15, player, {
+    stage = Stage(10, 15, player, bg, {
         tileSize = 64,
         getImage = function()
             return tileImage

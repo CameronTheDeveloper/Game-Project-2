@@ -17,6 +17,7 @@ end
 
 local bgGround6 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/6.png")
 local bgGround7 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7new.png")
+local bgPause = love.graphics.newImage("graphics/tilesets/tile/Highway_road (96 x 64).png")
 
 function Background:drawMenuground() 
     love.graphics.draw(bgGround6,-self.scaleX,0)
@@ -26,6 +27,11 @@ end
 function Background:drawBackground()
     love.graphics.draw(bgGround7,-self.scaleX,0)
     love.graphics.draw(bgGround7,-self.scaleY,0)
+end
+
+function Background:drawGameground()
+    love.graphics.draw(bgPause,-self.scaleX,0)
+    love.graphics.draw(bgPause,-self.scaleY,0)
 end
 
 --local bgGround1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/1.png")

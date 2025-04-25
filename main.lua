@@ -4,12 +4,15 @@ local Car = require "src.game.Player"
 local Stage = require "src.game.stages.Stage"
 local Sounds = require "src.game.Sounds"
 local Background = require "src.game.Background"
+local HUD = require "src.game.HUD"
+
 
 local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",65)
 local titleFont2 = love.graphics.newFont("fonts/Abaddon_Bold.ttf",35)
 
 local bg = Background()
 local player
+local hud
 local stage
 local tileSize
 
@@ -25,6 +28,7 @@ function love.load()
 
 
     player = Car(1) -- 1 = green car
+    hud = HUD(player)
     local tileImage = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
 
     stage = Stage(10, 15, player, {
@@ -131,6 +135,7 @@ function drawPlayState()
     -- bg:drawForeground()
     stage:draw()
     player:draw()
+    hud:draw()
     
 end
 

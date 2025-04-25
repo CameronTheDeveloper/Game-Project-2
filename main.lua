@@ -61,8 +61,12 @@ function love.keypressed(key)
         gameState = "pause"
     elseif key == "p" and gameState=="pause" then
         gameState = "play"
-    elseif key == "return" and gameState~="play" then
+    elseif key == "return" and gameState=="start" then
         gameState = "play"
+    elseif key == "c" and gameState=="start" then
+        gameState = "cars"
+    elseif key == "e" and gameState=="cars" then
+        gameState = "start"
     end
 end
 

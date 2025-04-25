@@ -7,10 +7,17 @@ local bgHighway = love.graphics.newImage("graphics/tilesets/tile/Highway_road (9
 local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
 local bgLight = love.graphics.newImage("graphics/obj/light_double.png")
 local bgButtom = love.graphics.newImage("graphics/HUDandMENU/MENU/Menu Buttom.png")
+local bgHUD = love.graphics.newImage("graphics/HUDandMENU/HUD/HUD Buttom.png")
 
 local Background = Class{}
 function Background:init()
-    self.bgButtomPos = -210
+    self.bgButtomPos1 = -235
+    self.bgButtomPos2 = -300
+    self.bgButtomPos3 = -370
+    self.bgButtomPos4 = -300
+    self.bgButtomPos5 = -370
+    self.bgHUDPos1 = 25
+    self.bgHUDPos2 = -230
     self.bgLightPos = 0
     self.bgGroundPos = 0
     self.bgBarrierPos = 0
@@ -42,16 +49,29 @@ function Background:drawMenuground()
     drawScaledFullScreen(bgGround6)
     -- love.graphics.draw(bgButtom,-self.bgBarrierPos,0)
     -- love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos,0)
-    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos-15, self.bgHeight-self.bgButtomPos, 0, 0.5, 0.5)
-    
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-10, self.bgHeight-self.bgButtomPos1-5, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos3-145, self.bgHeight-self.bgButtomPos3, 0, 0.35, 0.35)
 end
 
 function Background:drawCarground()
     drawScaledFullScreen(bgGround1)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos4-75, self.bgHeight-self.bgButtomPos4, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos5-145, self.bgHeight-self.bgButtomPos5, 0, 0.35, 0.35)
 end
 
 function Background:drawGameground()
     drawScaledFullScreen(bgHighway)
+end
+
+function Background:drawHudground()
+    love.graphics.draw(bgHUD,self.bgWidth-self.bgHUDPos1-15, self.bgHeight-self.bgHUDPos1-5, 0, 0.35, 0.35)
+    love.graphics.draw(bgHUD,self.bgWidth-self.bgHUDPos2-3, self.bgHeight-self.bgHUDPos2-260, 0, 0.35, 0.35)
+end
+
+function Background:drawPauseground()
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-10, self.bgHeight-self.bgButtomPos1-5, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
 end
 
 --function Background:drawForeground()

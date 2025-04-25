@@ -69,6 +69,8 @@ function love.keypressed(key)
         gameState = "cars"
     elseif key == "e" and gameState=="cars" then
         gameState = "start"
+    elseif key == "r" and gameState=="pause" then
+        gameState = "start"
     end
 end
 
@@ -132,6 +134,7 @@ function drawPlayState()
     -- hud:draw()
 
     bg:drawBackground()
+    bg:drawHudground()
     -- bg:drawForeground()
     stage:draw()
     player:draw()
@@ -160,7 +163,11 @@ end
 
 function drawPauseState()
     love.graphics.setColor(0.3,0.3,0.3)
-    if bg then bg:drawGameground() end 
+    if bg then bg:drawGameground() end
+    love.graphics.setColor(1,1,1)
+    bg:drawPauseground()
+    love.graphics.printf("Resume", titleFont2,0,270,gameWidth,"center")
+    love.graphics.printf("Exit", titleFont2,0,340,gameWidth,"center")
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Game Paused", titleFont,0,100,gameWidth,"center")
 end

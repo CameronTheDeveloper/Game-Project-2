@@ -21,5 +21,11 @@ function WarningSign:update(dt)
     end
 end
 
+function WarningSign:draw()
+    love.graphics.setColor(1, 1, 1, self.alpha)
+    love.graphics.draw(warningSprite, self.x, self.y)
+    love.graphics.setColor(1, 1, 1, 1)
+end
+
 
 return WarningSign

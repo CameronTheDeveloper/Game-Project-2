@@ -36,6 +36,12 @@ function Stage:init(rows, cols, player, background, ts)
     end
 end
 
+function Stage:resetStage()
+    self.obstacles = {}
+    self.warningSigns = {}
+    self.spawnTimer = 0
+end
+
 function Stage:update(dt)
     -- Update obstacles
     for i = 1, #self.obstacles do

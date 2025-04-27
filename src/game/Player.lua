@@ -65,6 +65,16 @@ function Player:draw()
     love.graphics.draw(self.image, self.x, self.y)
 end
 
+function Player:reset()
+    self.x = 0
+    self.timeElapsed = 0
+    self.image = carSprites[spriteIndex or 1] -- Default value
+    self.score = 0
+    self.scoreRate = 2.5
+    self.timeElapsed = 0
+    self.speed = 100
+end
+
 function Player:checkCollision(obstacle)
     local playerLeft = self.x
     local playerRight = self.x + self.image:getWidth()

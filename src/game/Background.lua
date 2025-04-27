@@ -65,6 +65,20 @@ local function drawGameRoad(roadTop, roadBottom)
     end
 end
 
+function Background:mouseClicked(x, y)
+    local buttonX = self.bgWidth - self.bgButtomPos1 - 25
+    local buttonY = self.bgHeight - self.bgButtomPos1 - 35
+
+    local buttonWidth = bgButtom:getWidth() * 0.35
+    local buttonHeight = bgButtom:getHeight() * 0.35
+
+    
+    if x >= buttonX + 25 and x <= buttonX + buttonWidth and
+       y >= buttonY + 55 and y <= buttonY + buttonHeight then
+        gameState = "play" 
+    end
+end
+
 function Background:drawMapBackground()
     drawScaledFullScreen(bgGround7)
 end

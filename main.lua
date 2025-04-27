@@ -32,6 +32,7 @@ function love.load()
     sounds['music3'] = love.audio.newSource("sounds/Menu_music/ElevatorMusic.wav","static")
     sounds['music4'] = love.audio.newSource("sounds/Menu_music/Juhani Junkala [Retro Game Music Pack] Ending.wav","static")
     sounds["music"]:setLooping(true)
+    love.audio.setVolume(0.25)
     sounds["music"]:play()
 
     player = Car(1, bg.roadTop, bg.roadBottom) -- 1 = green car
@@ -133,6 +134,15 @@ end
 
 function love.mousepressed(x, y, button, istouch)
     gx, gy = Push:toGame(x,y)
+
+    if button == 1 then 
+        if gameState == "start" then
+            bg:mouseClicked(gx, gy)
+        elseif gameState == "play" then
+            
+        end
+    end
+    
     -- Handle clicks based on gameState here
 end
 

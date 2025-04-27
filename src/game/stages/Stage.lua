@@ -4,6 +4,9 @@ local Obstacle = require "src.game.Obstacle"
 local WarningSign = require "src.game.WarningSign"
 
 local Stage = Class{}
+local sounds = {}  
+
+sounds['boom'] = love.audio.newSource("sounds/Object_impacts/explosion.wav","static")
 
 function Stage:init(rows, cols, player, background, ts)
     self.tileset = ts
@@ -75,6 +78,7 @@ function Stage:update(dt)
     -- Check for collisions with obstacles
     for i = 1, #self.obstacles do
         if self.player:checkCollision(self.obstacles[i]) then
+            sounds["boom"]:play()
             gameState = "over"
         end
     end

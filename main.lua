@@ -27,13 +27,13 @@ function love.load()
     Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = false, resizable = true})
 
     sounds = {} -- create an empty table
-    sounds['music'] = love.audio.newSource("sounds/Background_music/Juhani Junkala [Retro Game Music Pack] Level 1.wav","static")
-    sounds['music2'] = love.audio.newSource("sounds/Background_music/Juhani Junkala [Retro Game Music Pack] Level 2.wav","static")
-    sounds['music3'] = love.audio.newSource("sounds/Menu_music/ElevatorMusic.wav","static")
-    sounds['music4'] = love.audio.newSource("sounds/Menu_music/Juhani Junkala [Retro Game Music Pack] Ending.wav","static")
-    -- sounds["music"]:setLooping(true)
+    sounds['startMusic'] = love.audio.newSource("sounds/Background_music/Juhani Junkala [Retro Game Music Pack] Level 1.wav","static")
+    sounds['playMusic'] = love.audio.newSource("sounds/Background_music/Juhani Junkala [Retro Game Music Pack] Level 2.wav","static")
+    sounds['pauseMusic'] = love.audio.newSource("sounds/Menu_music/ElevatorMusic.wav","static")
+    sounds['overMusic'] = love.audio.newSource("sounds/Menu_music/Juhani Junkala [Retro Game Music Pack] Ending.wav","static")
+    -- sounds['startMusic']:setLooping(true)
     love.audio.setVolume(0.25)
-    -- sounds["music"]:play()
+    -- sounds['startMusic']:play()
 
     player = Car(1, bg.roadTop, bg.roadBottom) -- 1 = green car
     hud = HUD(player)
@@ -147,24 +147,24 @@ function love.draw()
     if gameState == "play" then -- Game
         drawPlayState()
         -- stopAllMusic()
-        sounds['music']:stop()
-        sounds['music2']:setLooping(true)
-        sounds['music2']:play()
+        sounds['startMusic']:stop()
+        sounds['playMusic']:setLooping(true)
+        sounds['playMusic']:play()
     elseif gameState == "start" then -- Main menu
         drawStartState()
         -- stopAllMusic()
-        sounds["music"]:setLooping(true)
-        sounds["music"]:play()
+        sounds['startMusic']:setLooping(true)
+        sounds['startMusic']:play()
     elseif gameState == "pause" then
         drawPauseState()
         stopAllMusic()
-        sounds['music3']:setLooping(true)
-        sounds['music3']:play()
+        sounds['pauseMusic']:setLooping(true)
+        sounds['pauseMusic']:play()
     elseif gameState == "over" then
         drawGameOverState()
         stopAllMusic()
-        sounds['music4']:setLooping(true)
-        sounds['music4']:play()
+        sounds['overMusic']:setLooping(true)
+        sounds['overMusic']:play()
     elseif gameState == "cars" then
         drawCarSelectState()
     else

@@ -84,6 +84,7 @@ function love.keypressed(key)
     elseif key == "e" and gameState=="cars" then
         gameState = "start"
     elseif key == "r" and gameState=="pause" then
+        sounds['pauseMusic']:stop()
         gameState = "start"
         player:reset()
         stage:resetStage()
@@ -92,6 +93,7 @@ function love.keypressed(key)
     elseif key == "e" and gameState=="start" then
         love.event.quit()
     elseif key == "r" and gameState=="over" then
+        sounds['overMusic']:stop()
         gameState = "start"
         player:reset()
         stage:resetStage()
@@ -146,23 +148,21 @@ function love.draw()
 
     if gameState == "play" then -- Game
         drawPlayState()
-        -- stopAllMusic()
         sounds['startMusic']:stop()
         sounds['playMusic']:setLooping(true)
         sounds['playMusic']:play()
     elseif gameState == "start" then -- Main menu
         drawStartState()
-        -- stopAllMusic()
         sounds['startMusic']:setLooping(true)
         sounds['startMusic']:play()
     elseif gameState == "pause" then
         drawPauseState()
-        stopAllMusic()
+        sounds['playMusic']:stop()
         sounds['pauseMusic']:setLooping(true)
         sounds['pauseMusic']:play()
     elseif gameState == "over" then
         drawGameOverState()
-        stopAllMusic()
+        sounds['playMusic']:stop()
         sounds['overMusic']:setLooping(true)
         sounds['overMusic']:play()
     elseif gameState == "cars" then

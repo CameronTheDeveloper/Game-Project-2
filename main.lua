@@ -10,7 +10,7 @@ local HUD = require "src.game.HUD"
 local titleFont = love.graphics.newFont("fonts/Abaddon_Bold.ttf",65)
 local titleFont2 = love.graphics.newFont("fonts/Abaddon_Bold.ttf",35)
 
-local bg = Background()
+local bg = Background(0)
 local player
 local hud
 local stage
@@ -59,6 +59,7 @@ function love.update(dt)
     if gameState == "play" then
         player:update(dt)
         stage:update(dt)
+        bg:update(dt)
     end
 end
 

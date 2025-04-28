@@ -2,7 +2,6 @@ local Class = require "libs.hump.class"
 
 local bgGround1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/1.png")
 local bgGround6 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/6.png")
-local bgGround7 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
 local bgHighway = love.graphics.newImage("graphics/tilesets/tile/Highway_road (96 x 64).png")
 local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
 local bgLight = love.graphics.newImage("graphics/obj/light_double.png")
@@ -16,7 +15,10 @@ local bgCarpic3 = love.graphics.newImage("graphics/cars/sports_red.png")
 local bgCarpic4 = love.graphics.newImage("graphics/cars/sports_yellow.png")
 
 local Background = Class{}
-function Background:init()
+function Background:init(x)
+    self.cityImage = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
+    self.x = x
+    self.cityScrollSpeed = 30
     self.bgButtomPosX = -255
     self.bgButtomPos1 = -230
     self.bgButtomPos2 = -300
@@ -40,18 +42,18 @@ function Background:init()
 end
 
 function Background:update(dt)
-    self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
-    self.bgGroundPos = (self.bgGroundPos+self.bgSpeed*dt)%self.bgWidth
-    self.bgBarrierPos = (self.bgBarrierPos+self.bgSpeed*2*dt)%self.bgWidth
-    self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
-
+    -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
+    -- self.bgGroundPos = (self.bgGroundPos+self.bgSpeed*dt)%self.bgWidth
+    -- self.bgBarrierPos = (self.bgBarrierPos+self.bgSpeed*2*dt)%self.bgWidth
+    -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
+    self.x = (self.x + self.cityScrollSpeed * dt) % self.cityImage:getWidth()
 end
 
-local function drawScaledFullScreen(image)
+local function drawScaledFullScreen(image, x)
     local scaleX = gameWidth / image:getWidth()
     local scaleY = gameHeight / image:getHeight()
 
-    love.graphics.draw(image, 0, 0, 0, scaleX, scaleY)
+    love.graphics.draw(image, x, 0, 0, scaleX, scaleY)
 end
 
 local function drawGameRoad(roadTop, roadBottom)
@@ -92,7 +94,10 @@ function Background:mouseClickedMenu(x, y)
 end
 
 function Background:drawMapBackground()
-    drawScaledFullScreen(bgGround7)
+    local scaleX = gameWidth / self.cityImage:getWidth()
+    local x = -self.x
+    drawScaledFullScreen(self.cityImage, x)
+    drawScaledFullScreen(self.cityImage, x + self.cityImage:getWidth() * scaleX)
 end
 
 function Background:drawPlayBackground()
@@ -100,14 +105,14 @@ function Background:drawPlayBackground()
 end
 
 function Background:drawMenuground()
-    drawScaledFullScreen(bgGround6)
+    drawScaledFullScreen(bgGround6, 0)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1, self.bgHeight-self.bgButtomPos1, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1, self.bgHeight-self.bgButtomPos3, 0, 0.35, 0.35)
 end
 
 function Background:drawCarground()
-    drawScaledFullScreen(bgGround1)
+    drawScaledFullScreen(bgGround1, 0)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos4-75, self.bgHeight-self.bgButtomPos4, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos5-145, self.bgHeight-self.bgButtomPos5, 0, 0.35, 0.35)
 
@@ -118,7 +123,7 @@ function Background:drawCarground()
 end
 
 function Background:drawEndGameGround()
-    drawScaledFullScreen(bgHighway)
+    drawScaledFullScreen(bgHighway, 0)
 end
 
 function Background:drawHudground()

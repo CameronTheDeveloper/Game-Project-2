@@ -19,7 +19,7 @@ function Background:init(x)
     self.cityImage = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
     self.x = x
     self.cityScrollSpeed = 30
-    self.roadScrollSpeed = 100
+    self.roadScrollSpeed = 70
     self.bgButtomPosX = -255
     self.bgButtomPos1 = -230
     self.bgButtomPos2 = -300
@@ -48,8 +48,11 @@ function Background:update(dt)
     -- self.bgGroundPos = (self.bgGroundPos+self.bgSpeed*dt)%self.bgWidth
     -- self.bgBarrierPos = (self.bgBarrierPos+self.bgSpeed*2*dt)%self.bgWidth
     -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
-    self.x = (self.x + self.cityScrollSpeed * dt) % self.cityImage:getWidth()
-    self.bgLightPosX = (self.x + self.roadScrollSpeed * dt) % self.cityImage:getWidth()
+    local scaleX = gameWidth / self.cityImage:getWidth()
+    local scaledCityWidth = self.cityImage:getWidth() * scaleX
+
+    self.x = (self.x + self.cityScrollSpeed * dt) % scaledCityWidth
+    self.bgLightPosX = (self.bgLightPosX + self.roadScrollSpeed * dt) % scaledCityWidth
 end
 
 local function drawScaledFullScreen(image, x)
@@ -182,9 +185,12 @@ function Background:drawBackobjground()
 end
 
 function Background:drawBackobjground2()
-    drawLights(self.bgWidth-self.bgLightPosX, self.bgHeight-self.bgLightPosY)
-    drawLights((self.bgWidth-self.bgLightPosX) + 600, self.bgHeight-self.bgLightPosY)
-    drawLights((self.bgWidth-self.bgLightPosX) + 1200, self.bgHeight-self.bgLightPosY)
+    -- drawLights(self.bgWidth-self.bgLightPosX, self.bgHeight-self.bgLightPosY)
+    drawLights(-self.bgLightPosX, self.bgHeight-self.bgLightPosY)
+    drawLights(-self.bgLightPosX + 600, self.bgHeight-self.bgLightPosY)
+    drawLights(-self.bgLightPosX + 1200, self.bgHeight-self.bgLightPosY)
+    -- drawLights((self.bgWidth-self.bgLightPosX) + 600, self.bgHeight-self.bgLightPosY)
+    -- drawLights((self.bgWidth-self.bgLightPosX) + 1200, self.bgHeight-self.bgLightPosY)
 end
 
 return Background

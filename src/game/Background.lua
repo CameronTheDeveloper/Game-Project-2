@@ -71,6 +71,7 @@ function Background:mouseClicked(x, y)
     local buttonX = self.bgWidth - self.bgButtomPos1 - 15
     local playButtonY = self.bgHeight - self.bgButtomPos1 - 30
     local carsButtonY = self.bgHeight - self.bgButtomPos2 - 35
+    local exitButtonY = self.bgHeight - self.bgButtomPos3 - 35
 
     local buttonWidth = bgButtom:getWidth() * 0.35
     local buttonHeight = bgButtom:getHeight() * 0.35
@@ -83,6 +84,10 @@ function Background:mouseClicked(x, y)
     x >= buttonX + 25 and x <= buttonX + buttonWidth and
     y >= carsButtonY + 55 and y <= carsButtonY + buttonHeight then
      gameState = "cars"
+    elseif 
+    x >= buttonX + 25 and x <= buttonX + buttonWidth and
+    y >= exitButtonY + 55 and y <= exitButtonY + buttonHeight then
+        love.event.quit()
     end
 end
 

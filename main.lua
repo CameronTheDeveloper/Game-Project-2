@@ -62,24 +62,31 @@ function love.update(dt)
     end
 end
 
-
+local function stopAllMusic()
+    for name, sound in pairs(sounds) do
+        if sound:typeOf("Source") then
+            sound:stop()
+        end
+    end
+end
 
 function love.keypressed(key)
     if key == "escape" then
         love.event.quit()
     elseif key == "p" and gameState=="play" then
         gameState = "pause"
-        sounds["music2"]:stop()
+        stopAllMusic()
         sounds['music3']:setLooping(true)
         sounds['music3']:play()
     elseif key == "p" and gameState=="pause" then
+        
         gameState = "play"
-        sounds['music3']:stop()
+        stopAllMusic()
         sounds['music2']:setLooping(true)
         sounds['music2']:play()
     elseif key == "return" and gameState=="start" then
         gameState = "play"
-        sounds["music"]:stop()
+        stopAllMusic()
         sounds['music2']:setLooping(true)
         sounds['music2']:play()
     elseif key == "c" and gameState=="start" then
@@ -92,7 +99,7 @@ function love.keypressed(key)
         gameState = "start"
         player:reset()
         stage:resetStage()
-        sounds['music3']:stop()
+        stopAllMusic()
         sounds["music"]:setLooping(true)
         sounds["music"]:play()
     elseif key == "e" and gameState=="pause" then
@@ -103,7 +110,7 @@ function love.keypressed(key)
         gameState = "start"
         player:reset()
         stage:resetStage()
-        sounds["music4"]:stop()
+        stopAllMusic()
         sounds["music"]:setLooping(true)
         sounds["music"]:play()
     elseif key == "e" and gameState=="over" then

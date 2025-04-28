@@ -90,6 +90,8 @@ function love.keypressed(key)
         sounds["music"]:play()
     elseif key == "r" and gameState=="pause" then
         gameState = "start"
+        player:reset()
+        stage:resetStage()
         sounds['music3']:stop()
         sounds["music"]:setLooping(true)
         sounds["music"]:play()
@@ -99,6 +101,8 @@ function love.keypressed(key)
         love.event.quit()
     elseif key == "r" and gameState=="over" then
         gameState = "start"
+        player:reset()
+        stage:resetStage()
         sounds["music4"]:stop()
         sounds["music"]:setLooping(true)
         sounds["music"]:play()

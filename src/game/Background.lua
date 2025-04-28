@@ -47,6 +47,14 @@ function Background:init(x)
     self.roadBottom = gameHeight - 1
 end
 
+function Background:switchBackground()
+    if self.bgIndex < #self.bgImages then
+        self.bgIndex = self.bgIndex + 1
+    else
+        self.bgIndex = 1
+    end
+end
+
 function Background:update(dt)
     -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
     -- self.bgGroundPos = (self.bgGroundPos+self.bgSpeed*dt)%self.bgWidth

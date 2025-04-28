@@ -17,7 +17,8 @@ local bgCarpic4 = love.graphics.newImage("graphics/cars/sports_yellow.png")
 
 local Background = Class{}
 function Background:init()
-    self.bgButtomPos1 = -235
+    self.bgButtomPosX = -250
+    self.bgButtomPos1 = -230
     self.bgButtomPos2 = -300
     self.bgButtomPos3 = -370
     self.bgButtomPos4 = -300
@@ -66,16 +67,22 @@ local function drawGameRoad(roadTop, roadBottom)
 end
 
 function Background:mouseClicked(x, y)
-    local buttonX = self.bgWidth - self.bgButtomPos1 - 25
-    local buttonY = self.bgHeight - self.bgButtomPos1 - 35
+
+    local buttonX = self.bgWidth - self.bgButtomPos1 - 20
+    local playButtonY = self.bgHeight - self.bgButtomPos1 - 30
+    local carsButtonY = self.bgHeight - self.bgButtomPos2 - 35
 
     local buttonWidth = bgButtom:getWidth() * 0.35
     local buttonHeight = bgButtom:getHeight() * 0.35
 
     
     if x >= buttonX + 25 and x <= buttonX + buttonWidth and
-       y >= buttonY + 55 and y <= buttonY + buttonHeight then
-        gameState = "play" 
+       y >= playButtonY + 55 and y <= playButtonY + buttonHeight then
+        gameState = "play"
+    elseif
+    x >= buttonX + 25 and x <= buttonX + buttonWidth and
+    y >= carsButtonY + 55 and y <= carsButtonY + buttonHeight then
+     gameState = "cars"
     end
 end
 
@@ -89,9 +96,9 @@ end
 
 function Background:drawMenuground()
     drawScaledFullScreen(bgGround6)
-    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-10, self.bgHeight-self.bgButtomPos1-5, 0, 0.35, 0.35)
-    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
-    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos3-145, self.bgHeight-self.bgButtomPos3, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-5, self.bgHeight-self.bgButtomPos1, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-5, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-5, self.bgHeight-self.bgButtomPos3, 0, 0.35, 0.35)
 end
 
 function Background:drawCarground()
@@ -122,7 +129,7 @@ function Background:drawPauseground()
 end
 
 function Background:drawOverground()
-    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-10, self.bgHeight-self.bgButtomPos1-5, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-5, self.bgHeight-self.bgButtomPos1, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
 end
 

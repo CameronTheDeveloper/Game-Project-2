@@ -128,7 +128,7 @@ function Background:drawHudground()
 end
 
 function Background:drawPauseground()
-    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1, self.bgHeight-self.bgButtomPos1, 0, 0.35, 0.35)
+    love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos1-5, self.bgHeight-self.bgButtomPos1, 0, 0.35, 0.35)
     love.graphics.draw(bgButtom,self.bgWidth-self.bgButtomPos2-75, self.bgHeight-self.bgButtomPos2, 0, 0.35, 0.35)
     love.graphics.draw(bgReplay,self.bgWidth-self.bgReplayPos+100, self.bgHeight-self.bgReplayPos, 0, 0.2, 0.2)
 end

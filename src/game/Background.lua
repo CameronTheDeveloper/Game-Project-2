@@ -19,6 +19,7 @@ function Background:init(x)
     self.cityImage = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
     self.x = x
     self.cityScrollSpeed = 30
+    self.roadScrollSpeed = 100
     self.bgButtomPosX = -255
     self.bgButtomPos1 = -230
     self.bgButtomPos2 = -300
@@ -30,7 +31,8 @@ function Background:init(x)
     self.bgHUDpausePos = -560
     self.bgReplayPos = -265
     self.bgCarpicPos = -200
-    self.bgLightPos = -200
+    self.bgLightPosX = -200
+    self.bgLightPosY = -200
     self.bgBarrierPos = -270
     self.bgGroundPos = 0
     self.bgWidth = bgBarrier:getWidth() -- 853
@@ -47,6 +49,7 @@ function Background:update(dt)
     -- self.bgBarrierPos = (self.bgBarrierPos+self.bgSpeed*2*dt)%self.bgWidth
     -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
     self.x = (self.x + self.cityScrollSpeed * dt) % self.cityImage:getWidth()
+    self.bgLightPosX = (self.x + self.roadScrollSpeed * dt) % self.cityImage:getWidth()
 end
 
 local function drawScaledFullScreen(image, x)
@@ -66,6 +69,15 @@ local function drawGameRoad(roadTop, roadBottom)
             love.graphics.draw(bgHighway, x, y)
         end
     end
+end
+
+local function drawLights(xPosition, yPosition)
+    love.graphics.draw(bgLight,xPosition, yPosition, 0, 3, 3)
+    love.graphics.draw(bgLight,xPosition-100, yPosition, 0, 3, 3)
+    love.graphics.draw(bgLight,xPosition+100, yPosition, 0, 3, 3)
+    love.graphics.draw(bgLight,xPosition+200, yPosition, 0, 3, 3)
+    love.graphics.draw(bgLight,xPosition+300, yPosition, 0, 3, 3)
+    love.graphics.draw(bgLight,xPosition-200, yPosition, 0, 3, 3)
 end
 
 function Background:mouseClickedMenu(x, y)
@@ -98,6 +110,7 @@ function Background:drawMapBackground()
     local x = -self.x
     drawScaledFullScreen(self.cityImage, x)
     drawScaledFullScreen(self.cityImage, x + self.cityImage:getWidth() * scaleX)
+    drawScaledFullScreen(self.cityImage, x + (self.cityImage:getWidth() * 2) * scaleX)
 end
 
 function Background:drawPlayBackground()
@@ -169,12 +182,9 @@ function Background:drawBackobjground()
 end
 
 function Background:drawBackobjground2()
-    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos, self.bgHeight-self.bgLightPos, 0, 3, 3)
-    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos-100, self.bgHeight-self.bgLightPos, 0, 3, 3)
-    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos+100, self.bgHeight-self.bgLightPos, 0, 3, 3)
-    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos+200, self.bgHeight-self.bgLightPos, 0, 3, 3)
-    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos+300, self.bgHeight-self.bgLightPos, 0, 3, 3)
-    love.graphics.draw(bgLight,self.bgWidth-self.bgLightPos-200, self.bgHeight-self.bgLightPos, 0, 3, 3)
+    drawLights(self.bgWidth-self.bgLightPosX, self.bgHeight-self.bgLightPosY)
+    drawLights((self.bgWidth-self.bgLightPosX) + 600, self.bgHeight-self.bgLightPosY)
+    drawLights((self.bgWidth-self.bgLightPosX) + 1200, self.bgHeight-self.bgLightPosY)
 end
 
 return Background

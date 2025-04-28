@@ -1,6 +1,7 @@
 local Class = require "libs.hump.class"
 
 local bgGround1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/1.png")
+local bgGround7 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
 local bgGround6 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/6.png")
 local bgHighway = love.graphics.newImage("graphics/tilesets/tile/Highway_road (96 x 64).png")
 local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
@@ -16,7 +17,10 @@ local bgCarpic4 = love.graphics.newImage("graphics/cars/sports_yellow.png")
 
 local Background = Class{}
 function Background:init(x)
-    self.cityImage = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
+    self.bgImages = {
+        bgGround7
+    }
+    self.bgIndex = 1
     self.x = x
     self.cityScrollSpeed = 30
     self.roadScrollSpeed = 70
@@ -48,8 +52,9 @@ function Background:update(dt)
     -- self.bgGroundPos = (self.bgGroundPos+self.bgSpeed*dt)%self.bgWidth
     -- self.bgBarrierPos = (self.bgBarrierPos+self.bgSpeed*2*dt)%self.bgWidth
     -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
-    local scaleX = gameWidth / self.cityImage:getWidth()
-    local scaledCityWidth = self.cityImage:getWidth() * scaleX
+    local currentBg = self.bgImages[self.bgIndex]
+    local scaleX = gameWidth / currentBg:getWidth()
+    local scaledCityWidth = currentBg:getWidth() * scaleX
 
     self.x = (self.x + self.cityScrollSpeed * dt) % scaledCityWidth
     self.bgLightPosX = (self.bgLightPosX + self.roadScrollSpeed * dt) % scaledCityWidth
@@ -83,6 +88,10 @@ local function drawLights(xPosition, yPosition)
     love.graphics.draw(bgLight,xPosition-200, yPosition, 0, 3, 3)
 end
 
+function Background:changeBackground()
+
+end
+
 function Background:mouseClickedMenu(x, y)
 
     local buttonX = self.bgWidth - self.bgButtomPos1 - 15
@@ -109,11 +118,12 @@ function Background:mouseClickedMenu(x, y)
 end
 
 function Background:drawMapBackground()
-    local scaleX = gameWidth / self.cityImage:getWidth()
+    local currentBg = self.bgImages[self.bgIndex]
+    local scaleX = gameWidth / currentBg:getWidth()
     local x = -self.x
-    drawScaledFullScreen(self.cityImage, x)
-    drawScaledFullScreen(self.cityImage, x + self.cityImage:getWidth() * scaleX)
-    drawScaledFullScreen(self.cityImage, x + (self.cityImage:getWidth() * 2) * scaleX)
+    drawScaledFullScreen(currentBg, x)
+    drawScaledFullScreen(currentBg, x + currentBg:getWidth() * scaleX)
+    drawScaledFullScreen(currentBg, x + (currentBg:getWidth() * 2) * scaleX)
 end
 
 function Background:drawPlayBackground()
@@ -185,8 +195,9 @@ function Background:drawBackobjground()
 end
 
 function Background:drawBackobjground2()
-    local scaleX = gameWidth / self.cityImage:getWidth()
-    local scaledCityWidth = self.cityImage:getWidth() * scaleX
+    local currentBg = self.bgImages[self.bgIndex]
+    local scaleX = gameWidth / currentBg:getWidth()
+    local scaledCityWidth = currentBg:getWidth() * scaleX
 
     for i = -1, 2 do
         drawLights(-self.bgLightPosX + i * scaledCityWidth, self.bgHeight-self.bgLightPosY)

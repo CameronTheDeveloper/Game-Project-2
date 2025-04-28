@@ -185,12 +185,12 @@ function Background:drawBackobjground()
 end
 
 function Background:drawBackobjground2()
-    -- drawLights(self.bgWidth-self.bgLightPosX, self.bgHeight-self.bgLightPosY)
-    drawLights(-self.bgLightPosX, self.bgHeight-self.bgLightPosY)
-    drawLights(-self.bgLightPosX + 600, self.bgHeight-self.bgLightPosY)
-    drawLights(-self.bgLightPosX + 1200, self.bgHeight-self.bgLightPosY)
-    -- drawLights((self.bgWidth-self.bgLightPosX) + 600, self.bgHeight-self.bgLightPosY)
-    -- drawLights((self.bgWidth-self.bgLightPosX) + 1200, self.bgHeight-self.bgLightPosY)
+    local scaleX = gameWidth / self.cityImage:getWidth()
+    local scaledCityWidth = self.cityImage:getWidth() * scaleX
+
+    for i = -1, 2 do
+        drawLights(-self.bgLightPosX + i * scaledCityWidth, self.bgHeight-self.bgLightPosY)
+    end
 end
 
 return Background

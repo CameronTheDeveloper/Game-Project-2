@@ -66,7 +66,7 @@ local function drawGameRoad(roadTop, roadBottom)
     end
 end
 
-function Background:mouseClicked(x, y)
+function Background:mouseClickedMenu(x, y)
 
     local buttonX = self.bgWidth - self.bgButtomPos1 - 15
     local playButtonY = self.bgHeight - self.bgButtomPos1 - 30

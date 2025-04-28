@@ -141,7 +141,7 @@ function love.mousepressed(x, y, button, istouch)
 
     if button == 1 then 
         if gameState == "start" then
-            bg:mouseClicked(gx, gy)
+            bg:mouseClickedMenu(gx, gy)
         elseif gameState == "play" then
             
         end

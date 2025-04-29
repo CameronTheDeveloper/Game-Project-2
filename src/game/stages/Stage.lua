@@ -29,6 +29,7 @@ function Stage:init(rows, cols, player, background, ts)
     self.warningLeadTime = 0.5
 
     self.background = background
+    self.backgroundTime = 0
     self.map = Matrix:new(self.rowCount, self.colCount)
 
     for row = 1, self.rowCount do
@@ -48,14 +49,20 @@ function Stage:resetStage()
     self.warningSigns = {}
     self.spawnTimer = 0
     self.timeElapsed = 0
+    self.backgroundTime = 0
     self.score = 0
 
 end
 
 function Stage:update(dt)
 
-    self.timeElapsed = self.timeElapsed + dt
+    if self.backgroundTime > 60 then
+        self.background:switchBackground()
+        self.backgroundTime = 0
+    end
 
+    self.timeElapsed = self.timeElapsed + dt
+    self.backgroundTime = self.backgroundTime + dt
     -- Add score every second (or fraction thereof)
     self.score = self.score + self.scoreRate * dt
     -- Update obstacles

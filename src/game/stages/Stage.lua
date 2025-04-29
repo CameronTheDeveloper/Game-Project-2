@@ -13,7 +13,7 @@ function Stage:init(rows, cols, player, background, ts)
     self.rowCount = rows
     self.colCount = cols
 
-    self.timeSwitch = 5
+    self.timeSwitch = 60
 
     self.spawnTimer = 0
     self.spawnInterval = 2 -- Seconds
@@ -53,6 +53,7 @@ function Stage:resetStage()
     self.timeElapsed = 0
     self.backgroundTime = 0
     self.score = 0
+    self.background.bgIndex = 1
 
 end
 

@@ -6,6 +6,8 @@ local bgCity1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.pn
 local bgCity2 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back2/7.png")
 local bgCity3 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back3/10.png")
 local bgHighway = love.graphics.newImage("graphics/tilesets/tile/Highway_road (96 x 64).png")
+local bgHighway2 = love.graphics.newImage("graphics/tilesets/tile/Desert_road (64 x 64).png")
+local bgHighway3 = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
 local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
 local bgLight = love.graphics.newImage("graphics/obj/light_double.png")
 local bgButtom = love.graphics.newImage("graphics/HUDandMENU/MENU/Menu Buttom.png")
@@ -23,6 +25,12 @@ function Background:init(x)
         bgCity1,
         bgCity2,
         bgCity3
+    }
+    self.roadImages = {
+        bgHighway,
+        bgHighway2,
+        bgHighway3
+
     }
     self.bgIndex = 3
     self.x = x

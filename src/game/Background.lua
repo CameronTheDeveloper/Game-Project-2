@@ -16,6 +16,7 @@ local bgCarpic1 = love.graphics.newImage("graphics/cars/sports_race.png")
 local bgCarpic2 = love.graphics.newImage("graphics/cars/sports_green.png")
 local bgCarpic3 = love.graphics.newImage("graphics/cars/sports_red.png")
 local bgCarpic4 = love.graphics.newImage("graphics/cars/sports_yellow.png")
+local bgHUDforward = love.graphics.newImage("graphics/HUDandMENU/HUD/Asset 43.png")
 
 local Background = Class{}
 function Background:init(x)
@@ -37,6 +38,7 @@ function Background:init(x)
     self.bgHUDPos1 = 25
     self.bgHUDPos2 = -230
     self.bgHUDpausePos = -560
+    self.bgHUDforwardPos = -200
     self.bgReplayPos = -265
     self.bgCarpicPos = -200
     self.bgLightPosX = -200
@@ -68,6 +70,10 @@ function Background:update(dt)
     self.x = (self.x + self.cityScrollSpeed * dt) % scaledCityWidth
     self.bgLightPosX = (self.bgLightPosX + self.roadScrollSpeed * dt) % scaledCityWidth
     self.bgBarrierPosX = (self.bgBarrierPosX + self.roadScrollSpeed * dt) % scaledCityWidth
+end
+
+function Background:drawForward()
+    love.graphics.draw(bgHUDforward,self.bgWidth-self.bgHUDforwardPos, self.bgHeight-self.bgHUDforwardPos-50, 0, 0.5, 0.5) 
 end
 
 local function drawScaledFullScreen(image, x)

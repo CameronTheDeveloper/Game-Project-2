@@ -62,6 +62,8 @@ function love.update(dt)
         player:update(dt)
         stage:update(dt)
         bg:update(dt)
+    elseif gameState == "nextStage" then
+        stage:updateNextStage(dt)
     end
 end
 
@@ -151,6 +153,7 @@ function love.draw()
 
     if gameState == "play" then -- Game
         drawPlayState()
+        
         sounds['startMusic']:stop()
         sounds['playMusic']:setLooping(true)
         sounds['playMusic']:play()
@@ -170,6 +173,8 @@ function love.draw()
         sounds['overMusic']:play()
     elseif gameState == "cars" then
         drawCarSelectState()
+    elseif gameState == "nextstage" then
+        drawNextStage()
     else
         love.graphics.setColor(1,1,0) -- Yellow
         love.graphics.printf("Error", 0,20,gameWidth, "center")
@@ -190,6 +195,12 @@ function drawPlayState()
     stage:draw()
     player:draw()
     hud:draw()
+    
+end
+
+function drawNextStage()
+    bg:drawForward()
+    bg:switchBackground()
     
 end
 

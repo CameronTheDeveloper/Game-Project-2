@@ -13,7 +13,7 @@ function Stage:init(rows, cols, player, background, ts)
     self.rowCount = rows
     self.colCount = cols
 
-    self.timeSwitch = 60
+    self.timeSwitch = 5
 
     self.spawnTimer = 0
     self.spawnInterval = 2 -- Seconds
@@ -56,11 +56,19 @@ function Stage:resetStage()
 
 end
 
-function Stage:update(dt)
-
-    if self.backgroundTime > self.timeSwitch then
-        self.background:switchBackground()
+function Stage:updateNextStage(dt)
+    if self.backgroundTime > 2 then
         self.backgroundTime = 0
+        gameState = "play"
+    end
+    gameState = "play"
+    self.backgroundTime = self.backgroundTime + dt
+end
+
+function Stage:update(dt)
+    if self.backgroundTime > self.timeSwitch then
+        self.backgroundTime = 0
+        gameState = "nextstage"
     end
 
     self.timeElapsed = self.timeElapsed + dt

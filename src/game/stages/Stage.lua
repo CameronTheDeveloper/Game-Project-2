@@ -13,6 +13,8 @@ function Stage:init(rows, cols, player, background, ts)
     self.rowCount = rows
     self.colCount = cols
 
+    self.timeSwitch = 60
+
     self.spawnTimer = 0
     self.spawnInterval = 2 -- Seconds
 
@@ -56,7 +58,7 @@ end
 
 function Stage:update(dt)
 
-    if self.backgroundTime > 60 then
+    if self.backgroundTime > self.timeSwitch then
         self.background:switchBackground()
         self.backgroundTime = 0
     end

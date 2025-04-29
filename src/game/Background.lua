@@ -2,6 +2,9 @@ local Class = require "libs.hump.class"
 
 local bgGround1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/1.png")
 local bgGround6 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/6.png")
+local bgCity1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
+local bgCity2 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back2/7.png")
+local bgCity3 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back3/10.png")
 local bgHighway = love.graphics.newImage("graphics/tilesets/tile/Highway_road (96 x 64).png")
 local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
 local bgLight = love.graphics.newImage("graphics/obj/light_double.png")
@@ -16,10 +19,15 @@ local bgCarpic4 = love.graphics.newImage("graphics/cars/sports_yellow.png")
 
 local Background = Class{}
 function Background:init(x)
-    self.cityImage = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
+    self.bgImages = {
+        bgCity1,
+        bgCity2,
+        bgCity3
+    }
+    self.bgIndex = 3
     self.x = x
     self.cityScrollSpeed = 30
-    self.roadScrollSpeed = 100
+    self.roadScrollSpeed = 90
     self.bgButtomPosX = -255
     self.bgButtomPos1 = -230
     self.bgButtomPos2 = -300
@@ -44,14 +52,22 @@ function Background:init(x)
     self.roadBottom = gameHeight - 1
 end
 
+function Background:switchBackground()
+    if self.bgIndex < #self.bgImages then
+        self.bgIndex = self.bgIndex + 1
+    else
+        self.bgIndex = 1
+    end
+end
+
 function Background:update(dt)
-    -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
-    -- self.bgGroundPos = (self.bgGroundPos+self.bgSpeed*dt)%self.bgWidth
-    -- self.bgBarrierPos = (self.bgBarrierPos+self.bgSpeed*2*dt)%self.bgWidth
-    -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
-    self.x = (self.x + self.cityScrollSpeed * dt) % self.cityImage:getWidth()
-    self.bgLightPosX = (self.x + self.roadScrollSpeed * dt) % self.cityImage:getWidth()
-    self.bgBarrierPosX = (self.x + self.roadScrollSpeed * dt) % self.cityImage:getWidth()
+    local currentBg = self.bgImages[self.bgIndex]
+    local scaleX = gameWidth / currentBg:getWidth()
+    local scaledCityWidth = currentBg:getWidth() * scaleX
+
+    self.x = (self.x + self.cityScrollSpeed * dt) % scaledCityWidth
+    self.bgLightPosX = (self.bgLightPosX + self.roadScrollSpeed * dt) % scaledCityWidth
+    self.bgBarrierPosX = (self.bgBarrierPosX + self.roadScrollSpeed * dt) % scaledCityWidth
 end
 
 local function drawScaledFullScreen(image, x)
@@ -133,11 +149,12 @@ function Background:mouseClickedMenu(x, y)
 end
 
 function Background:drawMapBackground()
-    local scaleX = gameWidth / self.cityImage:getWidth()
+    local currentBg = self.bgImages[self.bgIndex]
+    local scaleX = gameWidth / currentBg:getWidth()
     local x = -self.x
-    drawScaledFullScreen(self.cityImage, x)
-    drawScaledFullScreen(self.cityImage, x + self.cityImage:getWidth() * scaleX)
-    drawScaledFullScreen(self.cityImage, x + (self.cityImage:getWidth() * 2) * scaleX)
+    drawScaledFullScreen(currentBg, x)
+    drawScaledFullScreen(currentBg, x + currentBg:getWidth() * scaleX)
+    drawScaledFullScreen(currentBg, x + (currentBg:getWidth() * 2) * scaleX)
 end
 
 function Background:drawPlayBackground()
@@ -184,15 +201,17 @@ function Background:drawOverground()
 end
 
 function Background:drawBackobjground()
-    drawBarriers(self.bgWidth-self.bgBarrierPosX, self.bgHeight-self.bgBarrierPosY)
-    drawBarriers((self.bgWidth-self.bgBarrierPosX) + 600, self.bgHeight-self.bgBarrierPosY)
-    drawBarriers((self.bgWidth-self.bgBarrierPosX) + 1200, self.bgHeight-self.bgBarrierPosY)
-end
+    local currentBg = self.bgImages[self.bgIndex]
+    local scaleX = gameWidth / currentBg:getWidth()
+    local scaledCityWidth = currentBg:getWidth() * scaleX
 
-function Background:drawBackobjground2()
-    drawLights(self.bgWidth-self.bgLightPosX, self.bgHeight-self.bgLightPosY)
-    drawLights((self.bgWidth-self.bgLightPosX) + 600, self.bgHeight-self.bgLightPosY)
-    drawLights((self.bgWidth-self.bgLightPosX) + 1200, self.bgHeight-self.bgLightPosY)
+    for i = -1, 2 do
+        drawLights(-self.bgLightPosX + i * scaledCityWidth, self.bgHeight-self.bgLightPosY)
+    end
+
+    for i = -1, 2 do
+        drawBarriers(-self.bgBarrierPosX + i * scaledCityWidth, self.bgHeight-self.bgBarrierPosY)
+    end
 end
 
 return Background

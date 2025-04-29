@@ -36,7 +36,6 @@ function love.load()
     -- sounds['startMusic']:play()
 
     player = Car(1, bg.roadTop, bg.roadBottom) -- 1 = green car
-    hud = HUD(player)
     local tileImage = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
 
     stage = Stage(10, 15, player, bg, {
@@ -45,6 +44,9 @@ function love.load()
             return tileImage
         end
     })
+
+    hud = HUD(stage)
+
 
     player.stageHeight = stage:getHeight()
     player.stageWidth = stage:getWidth()
@@ -182,7 +184,6 @@ function drawPlayState()
 
     -- hud:draw()
     bg:drawMapBackground()
-    bg:drawBackobjground2()
     bg:drawPlayBackground()
     bg:drawBackobjground()
     bg:drawHudground()
@@ -212,7 +213,7 @@ function drawGameOverState()
     love.graphics.printf("Exit", titleFont2,0,340,gameWidth,"center")
     love.graphics.setColor(1,0,0)
     love.graphics.printf("Game Over", titleFont,0,100,gameWidth,"center")
-    love.graphics.printf("Highscore: "..player.score, titleFont2,0,160,gameWidth,"center")
+    love.graphics.printf("Highscore: "..stage.score, titleFont2,0,160,gameWidth,"center")
 end
 
 function drawPauseState()

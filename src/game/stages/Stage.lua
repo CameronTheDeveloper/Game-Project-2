@@ -16,6 +16,10 @@ function Stage:init(rows, cols, player, background, ts)
     self.spawnTimer = 0
     self.spawnInterval = 2 -- Seconds
 
+    self.timeElapsed = 0
+    self.score = 0
+    self.scoreRate = 2.5
+
     self.player = player
     self.initialPlayerY = 0
     self.initialPlayerX = 0
@@ -43,9 +47,17 @@ function Stage:resetStage()
     self.obstacles = {}
     self.warningSigns = {}
     self.spawnTimer = 0
+    self.timeElapsed = 0
+    self.score = 0
+
 end
 
 function Stage:update(dt)
+
+    self.timeElapsed = self.timeElapsed + dt
+
+    -- Add score every second (or fraction thereof)
+    self.score = self.score + self.scoreRate * dt
     -- Update obstacles
     for i = 1, #self.obstacles do
         self.obstacles[i]:update(dt)

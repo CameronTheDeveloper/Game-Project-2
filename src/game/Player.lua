@@ -11,11 +11,7 @@ local Player = Class{}
 function Player:init(spriteIndex, roadTop, roadBottom)
     self.x = 0
     self.y = roadTop + (roadBottom - roadTop) / 2 -- Center car on road
-    self.timeElapsed = 0
     self.image = carSprites[spriteIndex or 1] -- Default value
-    self.score = 0
-    self.scoreRate = 2.5
-    self.timeElapsed = 0
     self.speed = 100
 
     self.roadTop = roadTop
@@ -52,10 +48,6 @@ function Player:nextStage(stage)
 end
 
 function Player:update(dt)
-    self.timeElapsed = self.timeElapsed + dt
-
-    -- Add score every second (or fraction thereof)
-    self.score = self.score + self.scoreRate * dt
     self:handlePlayerInput(dt)
 end
 
@@ -67,11 +59,7 @@ end
 
 function Player:reset()
     self.x = 0
-    self.timeElapsed = 0
     self.image = carSprites[spriteIndex or 1] -- Default value
-    self.score = 0
-    self.scoreRate = 2.5
-    self.timeElapsed = 0
     self.speed = 100
 end
 

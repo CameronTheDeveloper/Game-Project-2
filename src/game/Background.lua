@@ -1,12 +1,10 @@
 local Class = require "libs.hump.class"
 
 local bgGround1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/1.png")
-local bgGround2 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/2.png")
-local bgGround3 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/3.png")
-local bgGround4 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/4.png")
-local bgGround5 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/5.png")
 local bgGround6 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/6.png")
-local bgGround7 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
+local bgCity1 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back1/7.png")
+local bgCity2 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back2/7.png")
+local bgCity3 = love.graphics.newImage("graphics/tilesets/Backgrounds/Back3/10.png")
 local bgHighway = love.graphics.newImage("graphics/tilesets/tile/Highway_road (96 x 64).png")
 local bgBarrier = love.graphics.newImage("graphics/obj/barrier.png")
 local bgLight = love.graphics.newImage("graphics/obj/light_double.png")
@@ -22,10 +20,11 @@ local bgCarpic4 = love.graphics.newImage("graphics/cars/sports_yellow.png")
 local Background = Class{}
 function Background:init(x)
     self.bgImages = {
-        bgGround2, bgGround3, bgGround4, 
-        bgGround5, bgGround7,
+        bgCity1,
+        bgCity2,
+        bgCity3
     }
-    self.bgIndex = 4
+    self.bgIndex = 3
     self.x = x
     self.cityScrollSpeed = 30
     self.roadScrollSpeed = 70

@@ -61,7 +61,6 @@ function Stage:updateNextStage(dt)
         self.backgroundTime = 0
         gameState = "play"
     end
-    gameState = "play"
     self.backgroundTime = self.backgroundTime + dt
 end
 

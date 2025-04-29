@@ -51,6 +51,7 @@ function Background:update(dt)
     -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
     self.x = (self.x + self.cityScrollSpeed * dt) % self.cityImage:getWidth()
     self.bgLightPosX = (self.x + self.roadScrollSpeed * dt) % self.cityImage:getWidth()
+    self.bgBarrierPosX = (self.x + self.roadScrollSpeed * dt) % self.cityImage:getWidth()
 end
 
 local function drawScaledFullScreen(image, x)
@@ -81,7 +82,7 @@ local function drawLights(xPosition, yPosition)
     love.graphics.draw(bgLight,xPosition-200, yPosition, 0, 3, 3)
 end
 
-local function drawBarrier(xPosition, yPosition)
+local function drawBarriers(xPosition, yPosition)
     love.graphics.draw(bgBarrier,xPosition-300, yPosition, 0, 1.5, 1.5)
     love.graphics.draw(bgBarrier,xPosition-270, yPosition, 0, 1.5, 1.5)
     love.graphics.draw(bgBarrier,xPosition-240, yPosition, 0, 1.5, 1.5)
@@ -183,9 +184,9 @@ function Background:drawOverground()
 end
 
 function Background:drawBackobjground()
-    drawBarrier(self.bgWidth-self.bgBarrierPosX, self.bgHeight-self.bgBarrierPosY)
-    drawBarrier((self.bgWidth-self.bgBarrierPosX) + 600, self.bgHeight-self.bgBarrierPosY)
-    drawBarrier((self.bgWidth-self.bgBarrierPosX) + 1200, self.bgHeight-self.bgBarrierPosY)
+    drawBarriers(self.bgWidth-self.bgBarrierPosX, self.bgHeight-self.bgBarrierPosY)
+    drawBarriers((self.bgWidth-self.bgBarrierPosX) + 600, self.bgHeight-self.bgBarrierPosY)
+    drawBarriers((self.bgWidth-self.bgBarrierPosX) + 1200, self.bgHeight-self.bgBarrierPosY)
 end
 
 function Background:drawBackobjground2()

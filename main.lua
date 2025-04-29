@@ -31,9 +31,7 @@ function love.load()
     sounds['playMusic'] = love.audio.newSource("sounds/Background_music/Juhani Junkala [Retro Game Music Pack] Level 2.wav","static")
     sounds['pauseMusic'] = love.audio.newSource("sounds/Menu_music/ElevatorMusic.wav","static")
     sounds['overMusic'] = love.audio.newSource("sounds/Menu_music/Juhani Junkala [Retro Game Music Pack] Ending.wav","static")
-    -- sounds['startMusic']:setLooping(true)
     love.audio.setVolume(0.25)
-    -- sounds['startMusic']:play()
 
     player = Car(1, bg.roadTop, bg.roadBottom) -- 1 = green car
     local tileImage = love.graphics.newImage("graphics/tilesets/tile/Winter_road.png")
@@ -50,11 +48,6 @@ function love.load()
 
     player.stageHeight = stage:getHeight()
     player.stageWidth = stage:getWidth()
-
-    
-    -- tileSize = stage:getTileSize()
-    -- Set the window size to match the stage
-    -- love.window.setMode(stage:getWidth(), stage:getHeight())
 end
 
 function love.update(dt)
@@ -107,26 +100,6 @@ function love.keypressed(key)
         love.event.quit()
     end
 end
-
-
--- function love.draw()
---     stage:draw()
---     player:draw()
--- end
-
--- function love.load()
---     love.window.setTitle("Drive,Dodge,Dash!!!")
---     Push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = false, resizable = true})
---     math.randomseed(os.time())
-
---     player = Player(0,0)
---     -- hud = HUD(player)
-
---     stagemanager:setPlayer(player)
-
---     titleFont = love.graphics.newFont("fonts/Weiholmir_full_sheet.ttf",26)
-
--- end
 
 function love.resize(w,h)
     Push:resize(w,h)

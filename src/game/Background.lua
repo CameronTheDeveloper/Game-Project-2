@@ -27,7 +27,7 @@ function Background:init(x)
     self.bgIndex = 3
     self.x = x
     self.cityScrollSpeed = 30
-    self.roadScrollSpeed = 70
+    self.roadScrollSpeed = 90
     self.bgButtomPosX = -255
     self.bgButtomPos1 = -230
     self.bgButtomPos2 = -300
@@ -41,7 +41,8 @@ function Background:init(x)
     self.bgCarpicPos = -200
     self.bgLightPosX = -200
     self.bgLightPosY = -200
-    self.bgBarrierPos = -270
+    self.bgBarrierPosX = -270
+    self.bgBarrierPosY = -270
     self.bgGroundPos = 0
     self.bgWidth = bgBarrier:getWidth() -- 853
     self.bgHeight = bgBarrier:getHeight()
@@ -70,6 +71,7 @@ function Background:update(dt)
 
     self.x = (self.x + self.cityScrollSpeed * dt) % scaledCityWidth
     self.bgLightPosX = (self.bgLightPosX + self.roadScrollSpeed * dt) % scaledCityWidth
+    self.bgBarrierPosX = (self.bgBarrierPosX + self.roadScrollSpeed * dt) % scaledCityWidth
 end
 
 local function drawScaledFullScreen(image, x)
@@ -100,8 +102,29 @@ local function drawLights(xPosition, yPosition)
     love.graphics.draw(bgLight,xPosition-200, yPosition, 0, 3, 3)
 end
 
-function Background:changeBackground()
-
+local function drawBarriers(xPosition, yPosition)
+    love.graphics.draw(bgBarrier,xPosition-300, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-270, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-240, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-210, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-180, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-150, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-120, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-90, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-60, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition-30, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+30, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+60, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+90, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+120, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+150, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+180, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+210, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+240, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+270, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+300, yPosition, 0, 1.5, 1.5)
+    love.graphics.draw(bgBarrier,xPosition+330, yPosition, 0, 1.5, 1.5)
 end
 
 function Background:mouseClickedMenu(x, y)
@@ -182,28 +205,9 @@ function Background:drawOverground()
 end
 
 function Background:drawBackobjground()
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-300, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-270, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-240, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-210, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-180, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-150, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-120, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-90, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-60, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos-30, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+30, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+60, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+90, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+120, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+150, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+180, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+210, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+240, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+270, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+300, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
-    love.graphics.draw(bgBarrier,self.bgWidth-self.bgBarrierPos+330, self.bgHeight-self.bgBarrierPos, 0, 1.5, 1.5)
+    drawBarriers(self.bgWidth-self.bgBarrierPosX, self.bgHeight-self.bgBarrierPosY)
+    drawBarriers((self.bgWidth-self.bgBarrierPosX) + 600, self.bgHeight-self.bgBarrierPosY)
+    drawBarriers((self.bgWidth-self.bgBarrierPosX) + 1200, self.bgHeight-self.bgBarrierPosY)
 end
 
 function Background:drawBackobjground2()

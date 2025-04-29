@@ -184,7 +184,6 @@ function drawPlayState()
 
     -- hud:draw()
     bg:drawMapBackground()
-    bg:drawBackobjground2()
     bg:drawPlayBackground()
     bg:drawBackobjground()
     bg:drawHudground()

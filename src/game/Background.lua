@@ -61,10 +61,6 @@ function Background:switchBackground()
 end
 
 function Background:update(dt)
-    -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
-    -- self.bgGroundPos = (self.bgGroundPos+self.bgSpeed*dt)%self.bgWidth
-    -- self.bgBarrierPos = (self.bgBarrierPos+self.bgSpeed*2*dt)%self.bgWidth
-    -- self.bgLightPos = (self.bgLightPos+self.bgSpeed*2*dt)%self.bgWidth
     local currentBg = self.bgImages[self.bgIndex]
     local scaleX = gameWidth / currentBg:getWidth()
     local scaledCityWidth = currentBg:getWidth() * scaleX
@@ -205,18 +201,16 @@ function Background:drawOverground()
 end
 
 function Background:drawBackobjground()
-    drawBarriers(self.bgWidth-self.bgBarrierPosX, self.bgHeight-self.bgBarrierPosY)
-    drawBarriers((self.bgWidth-self.bgBarrierPosX) + 600, self.bgHeight-self.bgBarrierPosY)
-    drawBarriers((self.bgWidth-self.bgBarrierPosX) + 1200, self.bgHeight-self.bgBarrierPosY)
-end
-
-function Background:drawBackobjground2()
     local currentBg = self.bgImages[self.bgIndex]
     local scaleX = gameWidth / currentBg:getWidth()
     local scaledCityWidth = currentBg:getWidth() * scaleX
 
     for i = -1, 2 do
         drawLights(-self.bgLightPosX + i * scaledCityWidth, self.bgHeight-self.bgLightPosY)
+    end
+
+    for i = -1, 2 do
+        drawBarriers(-self.bgBarrierPosX + i * scaledCityWidth, self.bgHeight-self.bgBarrierPosY)
     end
 end
 

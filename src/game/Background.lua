@@ -79,16 +79,18 @@ function Background:update(dt)
     self.bgBarrierPosX = (self.bgBarrierPosX + self.roadScrollSpeed * dt) % scaledCityWidth
 end
 
-function Background:drawForward()
-    love.graphics.draw(bgHUDforward,self.bgWidth-self.bgHUDforwardPos, self.bgHeight-self.bgHUDforwardPos-50, 0, 0.5, 0.5) 
-end
-
 local function drawScaledFullScreen(image, x)
     local scaleX = gameWidth / image:getWidth()
     local scaleY = gameHeight / image:getHeight()
 
     love.graphics.draw(image, x, 0, 0, scaleX, scaleY)
 end
+
+function Background:drawForward()
+    self:drawMapBackground()
+    love.graphics.draw(bgHUDforward,self.bgWidth-self.bgHUDforwardPos, self.bgHeight-self.bgHUDforwardPos-50, 0, 0.5, 0.5) 
+end
+
 
 local function drawGameRoad(roadTop, roadBottom, currentImg)
     local roadTileWidth = currentImg:getWidth()

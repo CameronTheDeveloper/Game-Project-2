@@ -200,8 +200,8 @@ function drawPlayState()
 end
 
 function drawNextStage()
+    -- bg:switchBackground()
     bg:drawForward()
-    bg:switchBackground()
 end
 
 function drawStartState()

@@ -67,6 +67,7 @@ end
 function Stage:update(dt)
     if self.backgroundTime > self.timeSwitch then
         self.backgroundTime = 0
+        self.background:switchBackground()
         gameState = "nextstage"
     end
 
